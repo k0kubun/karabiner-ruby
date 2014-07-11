@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+lib = File.dirname(__FILE__) + '/../lib'
+$:.unshift lib unless $:.include? lib
+
+require 'dotremap'
+
+DOTREMAP_PATH = '~/.remap'
+
+dotremap = Dotremap.new(DOTREMAP_PATH)
+dotremap.compile
+dotremap.replace_private_xml
