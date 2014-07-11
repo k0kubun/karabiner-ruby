@@ -1,14 +1,18 @@
 require "dotremap/version"
+require "dotremap/root"
 require "unindent"
 
 class Dotremap
   def initialize(config_path)
     @config_path = config_path
+    @root = Root.new
   end
-  attr_reader :config_path
+  attr_reader :config_path, :root
 
   def compile
     validate_config_existence
+
+    puts root.to_xml
   end
 
   def replace_private_xml
