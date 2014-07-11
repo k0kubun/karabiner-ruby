@@ -12,6 +12,10 @@ class Dotremap
   def compile
     validate_config_existence
 
+    config = File.read(config_path)
+    root.instance_eval(config)
+
+    # for debug
     puts root.to_xml
   end
 
