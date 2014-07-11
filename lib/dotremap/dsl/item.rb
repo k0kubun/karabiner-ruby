@@ -5,8 +5,6 @@ module Dotremap::DSL::Item
   AVAILABLE_PROPERTIES = %i(
     name
     identifier
-    not
-    only
     autogen
   ).freeze
 

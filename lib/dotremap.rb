@@ -31,10 +31,9 @@ class Dotremap
       #!/usr/bin/env ruby
 
       # # Example
-      # item do
-      #   name 'Command+K to Command+L'
-      #   identifier 'remap.command_k_to_command_l'
-      #   autogen '__KeyToKey__ KeyCode::K, VK_COMMAND, KeyCode::L, VK_COMMAND'
+      # item "Command+E to Command+W", not: "TERMINAL" do
+      #   identifier "option.not_terminal_opt_e"
+      #   autogen "__KeyToKey__ KeyCode::E, VK_COMMAND, KeyCode::W, ModifierFlag::COMMAND_L"
       # end
     EOS
   end

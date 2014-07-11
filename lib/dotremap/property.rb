@@ -3,7 +3,7 @@ class Dotremap::Property
     @attr = attr
     @value = value
   end
-  attr_reader :attr, :value
+  attr_accessor :attr, :value
 
   def to_xml
     "<#{attr}>#{value}</#{attr}>"

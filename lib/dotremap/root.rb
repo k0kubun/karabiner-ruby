@@ -6,7 +6,7 @@ class Dotremap::Root
   def initialize
     @childs = []
   end
-  attr_reader :childs
+  attr_accessor :childs
 
   def to_xml
     [
