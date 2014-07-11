@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Dotremap::VERSION
   spec.authors       = ["Takashi Kokubun"]
   spec.email         = ["takashikkbn@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Configuration DSL for KeyRemap4MacBook}
+  spec.description   = %q{Configuration DSL for KeyRemap4MacBook}
+  spec.homepage      = "https://github.com/k0kubun/dotremap"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
