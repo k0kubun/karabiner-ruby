@@ -9,11 +9,11 @@ class Dotremap::Root
   attr_reader :childs
 
   def to_xml
-    <<-XML.unindent
-      <?xml version="1.0"?>
-      <root>
-#{@childs.map { |c| c.to_xml.gsub(/^/, "        ") }.join("\n").gsub(/\n\Z/, '')}
-      </root>
-    XML
+    [
+      "<?xml version=\"1.0\"?>",
+      "<root>",
+      childs.map(&:to_xml).join("\n\n").gsub(/^/, "  "),
+      "</root>",
+    ].join("\n")
   end
 end
