@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-lib = File.dirname(__FILE__) + '/../lib'
+lib = File.dirname(__FILE__) + "/../lib"
 $:.unshift lib unless $:.include? lib
 
-require 'dotremap'
+require "dotremap"
 
-DOTREMAP_PATH = '~/.remap'
+DOTREMAP_PATH = File.expand_path("~/.remap")
 
 dotremap = Dotremap.new(DOTREMAP_PATH)
 dotremap.compile
