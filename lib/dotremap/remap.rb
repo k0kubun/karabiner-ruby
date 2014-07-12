@@ -4,10 +4,15 @@ class Dotremap::Remap
     "Down"  => "CURSOR_DOWN",
     "Right" => "CURSOR_RIGHT",
     "Left"  => "CURSOR_LEFT",
-    "]"   => "BRACKET_RIGHT",
-    "["   => "BRACKET_LEFT",
+    "]"     => "BRACKET_RIGHT",
+    "["     => "BRACKET_LEFT",
   }.freeze
-  KEY_EXPRESSION = "([A-Z]|#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})"
+  PREFIX_MAP = {
+    "Cmd"   => "VK_COMMAND",
+    "Shift" => "VK_SHIFT",
+    "Opt"   => "VK_OPTION",
+  }.freeze
+  PREFIX_EXPRESSION = "(#{PREFIX_MAP.keys.map { |k| k + '-' }.join('|')})"
 
   def initialize(from, to)
     @from = from
@@ -29,20 +34,11 @@ class Dotremap::Remap
   end
 
   def key_combination(raw_combination)
-    raw_key = raw_combination.match(/#{KEY_EXPRESSION}$/).to_s
+    raw_prefixes, raw_key = split_key_combination(raw_combination)
+    return key_expression(raw_key) if raw_prefixes.empty?
 
-    case raw_combination
-    when /^Cmd-#{KEY_EXPRESSION}$/
-      "#{key_expression(raw_key)}, VK_COMMAND"
-    when /^Cmd-Opt-#{KEY_EXPRESSION}$/
-      "#{key_expression(raw_key)}, VK_COMMAND | VK_OPTION"
-    when /^Cmd-Shift-#{KEY_EXPRESSION}$/
-      "#{key_expression(raw_key)}, VK_COMMAND | VK_SHIFT"
-    when /^#{KEY_EXPRESSION}$/
-      key_expression(raw_key)
-    else
-      raw_combination
-    end
+    prefixes = raw_prefixes.map { |raw_prefix| PREFIX_MAP[raw_prefix] }
+    "#{key_expression(raw_key)}, #{prefixes.join(' | ')}"
   end
 
   def key_expression(raw_key)
@@ -54,5 +50,19 @@ class Dotremap::Remap
     else
       raw_key
     end
+  end
+
+  def split_key_combination(raw_combination)
+    prefixes = []
+    key = raw_combination.dup
+
+    while key.match(/^#{PREFIX_EXPRESSION}/)
+      key.gsub!(/^#{PREFIX_EXPRESSION}/) do
+        prefixes << $1.gsub(/-$/, "")
+        ""
+      end
+    end
+
+    [prefixes, key]
   end
 end
