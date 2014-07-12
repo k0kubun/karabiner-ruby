@@ -13,10 +13,11 @@ $ gem install dotremap
 
 ```rb
 # ~/.remap
-item do
-  name 'Command+K to Command+L'
-  identifier 'remap.command_k_to_command_l'
-  autogen '__KeyToKey__ KeyCode::K, VK_COMMAND, KeyCode::L, VK_COMMAND'
+item "Control+PNBF to Up/Down/Left/Right", not: "TERMINAL" do
+  remap "C-p", to: "Up"
+  remap "C-n", to: "Down"
+  remap "C-b", to: "Left"
+  remap "C-f", to: "Right"
 end
 ```
 

@@ -25,6 +25,7 @@ class Dotremap
     ensure_xml_dir_existence
     remove_current_xml
     write_new_xml
+    puts "Successfully generated private.xml"
   end
 
   private
