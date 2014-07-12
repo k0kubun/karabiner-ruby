@@ -1,15 +1,24 @@
 class Dotremap::Remap
   KEYCODE_MAP = {
-    "Up"    => "CURSOR_UP",
-    "Down"  => "CURSOR_DOWN",
-    "Right" => "CURSOR_RIGHT",
-    "Left"  => "CURSOR_LEFT",
-    "]"     => "BRACKET_RIGHT",
-    "["     => "BRACKET_LEFT",
+    "Ctrl_R" => "CONTROL_R",
+    "Ctrl_L" => "CONTROL_L",
+    "Opt_R"  => "OPTION_R",
+    "Opt_L"  => "OPTION_L",
+    "Cmd_R"  => "COMMAND_R",
+    "Cmd_L"  => "COMMAND_L",
+    "Up"     => "CURSOR_UP",
+    "Down"   => "CURSOR_DOWN",
+    "Right"  => "CURSOR_RIGHT",
+    "Left"   => "CURSOR_LEFT",
+    "]"      => "BRACKET_RIGHT",
+    "["      => "BRACKET_LEFT",
   }.freeze
   PREFIX_MAP = {
+    "C"     => "VK_CONTROL",
+    "Ctrl"  => "VK_CONTROL",
     "Cmd"   => "VK_COMMAND",
     "Shift" => "VK_SHIFT",
+    "M"     => "VK_OPTION",
     "Opt"   => "VK_OPTION",
   }.freeze
   PREFIX_EXPRESSION = "(#{PREFIX_MAP.keys.map { |k| k + '-' }.join('|')})"
@@ -43,12 +52,10 @@ class Dotremap::Remap
 
   def key_expression(raw_key)
     case raw_key
-    when /^[A-Z]$/
-      "KeyCode::#{raw_key}"
     when /^(#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
     else
-      raw_key
+      "KeyCode::#{raw_key.upcase}"
     end
   end
 

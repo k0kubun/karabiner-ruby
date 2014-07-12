@@ -47,6 +47,6 @@ class Dotremap::Item
     name = properties.find { |p| p.attr == "name" }
     generated_identifier = name.value.gsub(/[^a-zA-Z]/, "_").downcase
     identifier = Dotremap::Property.new("identifier", "remap.#{generated_identifier}")
-    childs << identifier
+    childs[1, 0] = identifier
   end
 end
