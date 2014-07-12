@@ -10,7 +10,7 @@ module Dotremap::DSL::Item
 
   private
 
-  def method_missing(property, value)
+  def method_missing(property, value = '')
     if AVAILABLE_PROPERTIES.include?(property)
       property = Dotremap::Property.new(property, value)
       childs << property

@@ -1,3 +1,4 @@
+require "dotremap/appdef"
 require "dotremap/dsl"
 require "dotremap/item"
 
@@ -6,5 +7,10 @@ module Dotremap::DSL::Root
     item = Dotremap::Item.new(name, options)
     item.instance_exec(&block)
     childs << item
+  end
+
+  def appdef(appname = '', options = {})
+    appdef = Dotremap::Appdef.new(appname, options)
+    childs << appdef
   end
 end
