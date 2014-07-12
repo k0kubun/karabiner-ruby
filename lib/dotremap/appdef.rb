@@ -11,7 +11,7 @@ class Dotremap::Appdef
 
     options.each do |option, value|
       raise "Unavailable option: #{property}" unless AVAILABLE_OPTIONS.include?(option)
-      @childs << Dotremap::Property.new(option.to_s, value)
+      @childs << Dotremap::Property.new(option, value)
     end
   end
 
