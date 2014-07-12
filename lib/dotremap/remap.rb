@@ -39,7 +39,7 @@ class Dotremap::Remap
   end
 
   def to
-    key_combination(@to)
+    [@to].flatten.map { |to| key_combination(to) }.join(", ")
   end
 
   def key_combination(raw_combination)
@@ -55,7 +55,8 @@ class Dotremap::Remap
     when /^(#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
     else
-      "KeyCode::#{raw_key.upcase}"
+      raw_key = raw_key.upcase unless raw_key.match(/^VK_/)
+      "KeyCode::#{raw_key}"
     end
   end
 

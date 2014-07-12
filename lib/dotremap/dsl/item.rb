@@ -14,11 +14,16 @@ module Dotremap::DSL::Item
     childs << remap
   end
 
+  def show_message(message)
+    property = Dotremap::Property.new("autogen", "__ShowStatusMessage__ #{message}")
+    childs << property
+  end
+
   private
 
-  def method_missing(property, value = '')
+  def method_missing(property, value = '', options = {})
     if AVAILABLE_PROPERTIES.include?(property)
-      property = Dotremap::Property.new(property, value)
+      property = Dotremap::Property.new(property, value, options)
       childs << property
     else
       super

@@ -6,6 +6,8 @@ class Dotremap::Item
   AVAILABLE_OPTIONS = %i(
     not
     only
+    config_not
+    config_only
   ).freeze
 
   def initialize(name, options)
