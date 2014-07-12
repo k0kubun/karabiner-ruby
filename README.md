@@ -27,7 +27,22 @@ end
 $ dotremap
 ```
 
-It will replace KeyRemap4MacBook's private.xml with compiled ~/.remap.
+It will replace KeyRemap4MacBook's private.xml with compiled ~/.remap:
+
+```xml
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Control+PNBF to Up/Down/Left/Right</name>
+    <identifier>remap.control_pnbf_to_up_down_left_right</identifier>
+    <not>TERMINAL</not>
+    <autogen>__KeyToKey__ KeyCode::P, VK_CONTROL, KeyCode::CURSOR_UP</autogen>
+    <autogen>__KeyToKey__ KeyCode::N, VK_CONTROL, KeyCode::CURSOR_DOWN</autogen>
+    <autogen>__KeyToKey__ KeyCode::B, VK_CONTROL, KeyCode::CURSOR_LEFT</autogen>
+    <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::CURSOR_RIGHT</autogen>
+  </item>
+</root>
+```
 
 ### 3. Reload private.xml and update config
 
