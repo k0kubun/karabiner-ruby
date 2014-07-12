@@ -4,8 +4,10 @@ class Dotremap::Remap
     "Down"  => "CURSOR_DOWN",
     "Right" => "CURSOR_RIGHT",
     "Left"  => "CURSOR_LEFT",
+    "]"   => "BRACKET_RIGHT",
+    "["   => "BRACKET_LEFT",
   }.freeze
-  KEY_EXPRESSION = "([A-Z]|#{KEYCODE_MAP.keys.join('|')})"
+  KEY_EXPRESSION = "([A-Z]|#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})"
 
   def initialize(from, to)
     @from = from
@@ -34,6 +36,8 @@ class Dotremap::Remap
       "#{key_expression(raw_key)}, VK_COMMAND"
     when /^Cmd-Opt-#{KEY_EXPRESSION}$/
       "#{key_expression(raw_key)}, VK_COMMAND | VK_OPTION"
+    when /^Cmd-Shift-#{KEY_EXPRESSION}$/
+      "#{key_expression(raw_key)}, VK_COMMAND | VK_SHIFT"
     when /^#{KEY_EXPRESSION}$/
       key_expression(raw_key)
     else
@@ -45,7 +49,7 @@ class Dotremap::Remap
     case raw_key
     when /^[A-Z]$/
       "KeyCode::#{raw_key}"
-    when /^(#{KEYCODE_MAP.keys.join('|')})$/
+    when /^(#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
     else
       raw_key
