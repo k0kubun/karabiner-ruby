@@ -1,5 +1,6 @@
 require "dotremap/dsl"
 require "dotremap/property"
+require "dotremap/remap"
 
 module Dotremap::DSL::Item
   AVAILABLE_PROPERTIES = %i(
@@ -7,6 +8,11 @@ module Dotremap::DSL::Item
     identifier
     autogen
   ).freeze
+
+  def remap(target, options = {})
+    remap = Dotremap::Remap.new(target, options[:to])
+    childs << remap
+  end
 
   private
 
