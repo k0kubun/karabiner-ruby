@@ -33,7 +33,7 @@ item "Exchange Control + Space and Command + Space" do
 end
 
 item "CapsLock ON", config_not: "notsave.private_capslock_on" do
-  remap "Cmd-L", to: ["capslock", "VK_CONFIG_FORCE_OFF_notsave_private_capslock_on"]
+  remap "Cmd-L", to: ["capslock", "VK_CONFIG_FORCE_ON_notsave_private_capslock_on"]
 end
 
 item "CapsLock OFF", config_only: "notsave.private_capslock_on" do
@@ -66,7 +66,7 @@ end
 # Use Cmd_R+B/F as M-b/f, and Cmd_R+S as Cmd+F to avoid conflict with M-f
 item "[Not Terminal] Command+B/F to Option+Left/Right, Command+S to Command+F", not: "TERMINAL" do
   remap "Cmd-B", to: "Opt-Left"
-  remap "Cmd-B", to: "Opt-Left"
+  remap "Cmd-F", to: "Opt-Right"
   remap "Cmd-S", to: "Cmd-F"
 end
 
