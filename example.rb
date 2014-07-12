@@ -115,8 +115,8 @@ item "Shift by control" do
 end
 
 item "Exchange single quote and double quote" do
-  remap "'", to: "Shift-'"
   remap "Shift-'", to: "'"
+  remap "'", to: "Shift-'"
 end
 
 item "[Only Terminal] Command+A to Option+A", only: "TERMINAL" do
