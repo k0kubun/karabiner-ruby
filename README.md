@@ -48,6 +48,11 @@ It will replace KeyRemap4MacBook's private.xml with compiled ~/.remap:
 
 You have to reload private.xml to activate compiled configurations.
 
+## Example
+
+I'm sorry but currently this software is not well documented.  
+Please see [example.rb](https://github.com/k0kubun/dotremap/blob/master/example.rb) to learn how to use.
+
 ## Contributing
 
 1. Fork it ( https://github.com/k0kubun/dotremap/fork )
