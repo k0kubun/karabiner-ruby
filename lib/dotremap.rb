@@ -10,9 +10,8 @@ class Dotremap
 
   def initialize(config_path)
     @config_path = config_path
-    @root = Root.new
   end
-  attr_reader :config_path, :root
+  attr_reader :config_path
 
   def replace_private_xml
     ensure_xml_dir_existence
@@ -22,27 +21,6 @@ class Dotremap
   end
 
   private
-
-  def compile
-    validate_config_existence
-
-    config = File.read(config_path)
-    root.instance_eval(config)
-  end
-
-  def validate_config_existence
-    return if File.exists?(config_path)
-
-    File.write(config_path, <<-EOS.unindent)
-      #!/usr/bin/env ruby
-
-      # # Example
-      # item "Command+E to Command+W", not: "TERMINAL" do
-      #   identifier "option.not_terminal_opt_e"
-      #   autogen "__KeyToKey__ KeyCode::E, VK_COMMAND, KeyCode::W, ModifierFlag::COMMAND_L"
-      # end
-    EOS
-  end
 
   def ensure_xml_dir_existence
     FileUtils.mkdir_p(OLD_XML_DIR)
@@ -61,8 +39,25 @@ class Dotremap
 
   def new_xml
     return @new_xml if defined?(@new_xml)
+    validate_config_existence
 
-    compile
+    root = Root.new
+    config = File.read(config_path)
+    root.instance_eval(config)
     @new_xml = root.to_xml.gsub(/ *$/, "")
+  end
+
+  def validate_config_existence
+    return if File.exists?(config_path)
+
+    File.write(config_path, <<-EOS.unindent)
+      #!/usr/bin/env ruby
+
+      # # Example
+      # item "Command+E to Command+W", not: "TERMINAL" do
+      #   identifier "option.not_terminal_opt_e"
+      #   autogen "__KeyToKey__ KeyCode::E, VK_COMMAND, KeyCode::W, ModifierFlag::COMMAND_L"
+      # end
+    EOS
   end
 end
