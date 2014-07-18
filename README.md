@@ -44,11 +44,8 @@ It will replace KeyRemap4MacBook's private.xml with compiled ~/.remap:
 </root>
 ```
 
-### 3. Reload private.xml and update config
-
-You have to reload private.xml to activate compiled configurations.
-
-![](https://raw.githubusercontent.com/k0kubun/dotremap/master/reload.gif)
+dotremap will automatically execute "ReloadXML".  
+Then activate your favorite configurations.
 
 ## Example
 
