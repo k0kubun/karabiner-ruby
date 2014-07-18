@@ -63,6 +63,6 @@ class Dotremap
     return @new_xml if defined?(@new_xml)
 
     compile
-    @new_xmll = root.to_xml
+    @new_xml = root.to_xml.gsub(/ *$/, "")
   end
 end
