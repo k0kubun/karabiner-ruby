@@ -14,13 +14,6 @@ class Dotremap
   end
   attr_reader :config_path, :root
 
-  def compile
-    validate_config_existence
-
-    config = File.read(config_path)
-    root.instance_eval(config)
-  end
-
   def replace_private_xml
     ensure_xml_dir_existence
     remove_current_xml
@@ -29,6 +22,13 @@ class Dotremap
   end
 
   private
+
+  def compile
+    validate_config_existence
+
+    config = File.read(config_path)
+    root.instance_eval(config)
+  end
 
   def validate_config_existence
     return if File.exists?(config_path)
@@ -55,7 +55,14 @@ class Dotremap
   end
 
   def write_new_xml
-    File.write(File.join(OLD_XML_DIR, XML_FILE_NAME), root.to_xml)
-    File.write(File.join(NEW_XML_DIR, XML_FILE_NAME), root.to_xml)
+    File.write(File.join(OLD_XML_DIR, XML_FILE_NAME), new_xml)
+    File.write(File.join(NEW_XML_DIR, XML_FILE_NAME), new_xml)
+  end
+
+  def new_xml
+    return @new_xml if defined?(@new_xml)
+
+    compile
+    @new_xmll = root.to_xml
   end
 end
