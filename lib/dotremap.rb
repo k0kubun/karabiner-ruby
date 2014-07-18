@@ -4,23 +4,38 @@ require "unindent"
 require "fileutils"
 
 class Dotremap
+  XML_FILE_NAME = "private.xml"
   OLD_XML_DIR = File.expand_path("~/Library/Application Support/KeyRemap4MacBook")
   NEW_XML_DIR = File.expand_path("~/Library/Application Support/Karabiner")
-  XML_FILE_NAME = "private.xml"
+  OLD_APP_PATH = "/Applications/KeyRemap4MacBook.app"
+  NEW_APP_PATH = "/Applications/Karabiner.app"
+  RELOAD_XML_PATH = "Contents/Applications/Utilities/ReloadXML.app"
 
   def initialize(config_path)
     @config_path = config_path
   end
   attr_reader :config_path
 
+  def apply_configuration
+    replace_private_xml
+    reload_xml
+    puts "Successfully updated Karabiner configuration"
+  end
+
+  private
+
   def replace_private_xml
     ensure_xml_dir_existence
     remove_current_xml
     write_new_xml
-    puts "Successfully generated private.xml"
   end
 
-  private
+  def reload_xml
+    app_path = File.exists?(OLD_APP_PATH) ? OLD_APP_PATH : NEW_APP_PATH
+    reload_xml_path = File.join(app_path, RELOAD_XML_PATH)
+
+    system("open #{reload_xml_path}")
+  end
 
   def ensure_xml_dir_existence
     FileUtils.mkdir_p(OLD_XML_DIR)

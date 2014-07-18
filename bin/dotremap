@@ -8,4 +8,4 @@ require "dotremap"
 DOTREMAP_PATH = File.expand_path("~/.remap")
 
 dotremap = Dotremap.new(DOTREMAP_PATH)
-dotremap.replace_private_xml
+dotremap.apply_configuration
