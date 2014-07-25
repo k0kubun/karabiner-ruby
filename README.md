@@ -102,6 +102,16 @@ Opt_R  Opt_L
 Cmd_R  Cmd_L
 ```
 
+### Advanced usage
+
+I'm sorry but currently some features are not documented here.  
+You can see [my ~/.remap](https://github.com/k0kubun/dotfiles/blob/master/.remap.rb) or
+[dotremap's spec file](https://github.com/k0kubun/dotremap/blob/master/spec/lib/dotremap_spec.rb).
+
+## TODO
+
+- Document all features in this README
+
 ## Contributing
 
 1. Fork it ( https://github.com/k0kubun/dotremap/fork )
