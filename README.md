@@ -24,6 +24,8 @@ end
 $ dotremap
 ```
 
+![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/chrome.png)
+
 ## Example
 
 I'm sorry but currently this software is not well documented.  
