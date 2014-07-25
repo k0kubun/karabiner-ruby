@@ -24,7 +24,13 @@ end
 $ dotremap
 ```
 
+Then dotremap will update Karabiner's config as you expected.
+
 ![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/chrome.png)
+
+### 3. Enable your favorite configurations
+
+That's all. Enjoy!
 
 ## Example
 
