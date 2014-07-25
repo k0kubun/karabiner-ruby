@@ -1,10 +1,11 @@
 # Dotremap [![Build Status](https://travis-ci.org/k0kubun/dotremap.png?branch=master)](https://travis-ci.org/k0kubun/dotremap)
 
-Lightweight keymap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html)
+Lightweight keymap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
 
 ## Installation
 
-First of all, you have to install [Karabiner](https://pqrs.org/osx/karabiner/index.html.en).  
+First of all, you have to install [Karabiner](https://pqrs.org/osx/karabiner/index.html.en),
+which is keyboard remap utility for Mac OSX.  
   
 Then execute:
 
