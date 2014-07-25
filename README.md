@@ -1,10 +1,10 @@
 # Dotremap
 
-Lightweight configuration DSL for [KeyRemap4MacBook](https://pqrs.org/osx/karabiner/index.html)
+Lightweight keymap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html)
 
 ## Installation
 
-````bash
+```bash
 $ gem install dotremap
 ```
 
@@ -27,7 +27,7 @@ end
 $ dotremap
 ```
 
-It will replace KeyRemap4MacBook's private.xml with compiled ~/.remap:
+It will replace Karabiner's private.xml with compiled ~/.remap:
 
 ```xml
 <?xml version="1.0"?>

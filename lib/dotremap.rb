@@ -5,10 +5,8 @@ require "fileutils"
 
 class Dotremap
   XML_FILE_NAME = "private.xml"
-  OLD_XML_DIR = File.expand_path("~/Library/Application Support/KeyRemap4MacBook")
-  NEW_XML_DIR = File.expand_path("~/Library/Application Support/Karabiner")
-  OLD_APP_PATH = "/Applications/KeyRemap4MacBook.app"
-  NEW_APP_PATH = "/Applications/Karabiner.app"
+  XML_DIR = File.expand_path("~/Library/Application Support/Karabiner")
+  APP_PATH = "/Applications/Karabiner.app"
   RELOAD_XML_PATH = "Contents/Applications/Utilities/ReloadXML.app"
 
   def initialize(config_path)
@@ -25,31 +23,15 @@ class Dotremap
   private
 
   def replace_private_xml
-    ensure_xml_dir_existence
-    remove_current_xml
-    write_new_xml
+    FileUtils.mkdir_p(XML_DIR)
+
+    xml_path = File.join(XML_DIR, XML_FILE_NAME)
+    File.write(xml_path, new_xml)
   end
 
   def reload_xml
-    app_path = File.exists?(OLD_APP_PATH) ? OLD_APP_PATH : NEW_APP_PATH
-    reload_xml_path = File.join(app_path, RELOAD_XML_PATH)
-
+    reload_xml_path = File.join(APP_PATH, RELOAD_XML_PATH)
     system("open #{reload_xml_path}")
-  end
-
-  def ensure_xml_dir_existence
-    FileUtils.mkdir_p(OLD_XML_DIR)
-    FileUtils.mkdir_p(NEW_XML_DIR)
-  end
-
-  def remove_current_xml
-    FileUtils.rm_f(File.join(OLD_XML_DIR, XML_FILE_NAME))
-    FileUtils.rm_f(File.join(NEW_XML_DIR, XML_FILE_NAME))
-  end
-
-  def write_new_xml
-    File.write(File.join(OLD_XML_DIR, XML_FILE_NAME), new_xml)
-    File.write(File.join(NEW_XML_DIR, XML_FILE_NAME), new_xml)
   end
 
   def new_xml
