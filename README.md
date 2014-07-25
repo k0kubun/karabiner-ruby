@@ -38,10 +38,51 @@ Then dotremap will update Karabiner's config as you expected.
 
 Enjoy!
 
-## Example
+## How to write ~/.remap
+### Basics
 
-I'm sorry but currently this software is not well documented.  
-Please see [example.rb](https://github.com/k0kubun/dotremap/blob/master/example.rb) to learn how to use.
+Dotremap's DSL is a superset of Ruby.  
+So you can use any Ruby methods in ~/.remap.
+
+#### item
+
+```rb
+item "configuration unit" do
+  ...
+end
+```
+
+In dotremap, any Karabiner's configuration unit is expressed in `item` and its `do ~ end` block.  
+You can group some remap configurations in one item and enable them in one click.
+
+#### remap
+
+```rb
+item "remap example" do
+  remap "Cmd-a", to: "C-a"
+end
+```
+
+If you want to add remap configuration, you have to call `remap` method.  
+In this example, Command+A will be remapped to Control+A.  
+  
+You have to write "key expression" to specify keys to remap.
+
+#### key expression
+
+- `a`, `A`, `1`, `;`, `tab`, `Tab`, `space`, `up`, `down`
+  - any string without `-` will be considered as single key
+  - ignore upcase or downcase
+- `C-a`, `Ctrl-a`
+  - regarded as Control + A
+  - `C-` is a short expression of `Ctrl-`
+- `M-a`, `Opt-a`
+  - regarded as Option + A
+- `Shift-a`
+  - regarded as large A
+  - if you write just `A`, it will be regarded as small a
+- `Cmd-a`
+  - regarded as Command + A
 
 ## Contributing
 
