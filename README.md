@@ -12,8 +12,7 @@ $ gem install dotremap
 ### 1. Create ~/.remap
 
 ```rb
-# ~/.remap
-item "Command+G to execute Google Chrome" do
+item "Command+G to open Google Chrome" do
   remap "Cmd-g", to: invoke("Google Chrome")
 end
 ```
@@ -26,7 +25,7 @@ $ dotremap
 
 Then dotremap will update Karabiner's config as you expected.
 
-![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/chrome.png)
+![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/config.png)
 
 ### 3. Enable your favorite configurations
 
