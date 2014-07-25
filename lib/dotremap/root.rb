@@ -13,9 +13,11 @@ class Dotremap::Root
     [
       "<?xml version=\"1.0\"?>",
       "<root>",
-      childs.map(&:to_xml).join("\n\n").gsub(/^/, "  "),
-      Dotremap::Openurl.registered_xml.gsub(/^/, "  "),
+      [
+        childs.map(&:to_xml).join("\n\n"),
+        Dotremap::Openurl.registered_xml,
+      ].compact.join("\n").gsub(/^/, "  "),
       "</root>",
-    ].compact.join("\n")
+    ].join("\n")
   end
 end

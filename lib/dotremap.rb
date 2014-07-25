@@ -41,7 +41,7 @@ class Dotremap
     root = Root.new
     config = File.read(config_path)
     root.instance_eval(config)
-    @new_xml = root.to_xml.gsub(/ *$/, "")
+    @new_xml = root.to_xml.gsub(/ *$/, "").concat("\n")
   end
 
   def validate_config_existence
