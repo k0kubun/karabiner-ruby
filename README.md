@@ -25,11 +25,13 @@ $ dotremap
 
 Then dotremap will update Karabiner's config as you expected.
 
-![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/config.png)
+![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/disabled.png)
 
 ### 3. Enable your favorite configurations
 
-That's all. Enjoy!
+![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/enabled.png)
+
+Enjoy!
 
 ## Example
 
