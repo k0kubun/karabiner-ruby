@@ -1,6 +1,13 @@
 # Dotremap [![Build Status](https://travis-ci.org/k0kubun/dotremap.png?branch=master)](https://travis-ci.org/k0kubun/dotremap)
 
-Lightweight keymap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
+Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
+
+## Why dotremap?
+
+Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.ja) is very hard to write.  
+Dotremap's DSL is its wrapper, which is easy-to-write and readable.  
+  
+If you write Karabiner's config, you can update your keyremap configuration quickly.
 
 ## Installation
 

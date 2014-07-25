@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Dotremap::VERSION
   spec.authors       = ["Takashi Kokubun"]
   spec.email         = ["takashikkbn@gmail.com"]
-  spec.summary       = %q{Configuration DSL for KeyRemap4MacBook}
-  spec.description   = %q{Configuration DSL for KeyRemap4MacBook}
+  spec.summary       = %q{Lightweight keyremap configuration DSL}
+  spec.description   = %q{Lightweight keyremap configuration DSL for Karabiner}
   spec.homepage      = "https://github.com/k0kubun/dotremap"
   spec.license       = "MIT"
 
