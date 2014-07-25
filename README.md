@@ -7,12 +7,12 @@ Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/kara
 Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.ja) is very hard to write.  
 Dotremap's DSL is its wrapper, which is easy-to-write and readable.  
   
-If you write Karabiner's config, you can update your keyremap configuration quickly.
+If you write Karabiner's config by dotremap, you can update your keyremap configuration quickly.
 
 ## Installation
 
-First of all, you have to install [Karabiner](https://pqrs.org/osx/karabiner/index.html.en),
-which is keyboard remap utility for Mac OSX.  
+First of all, you have to install [Karabiner](https://pqrs.org/osx/karabiner/index.html.en).
+Karabiner is a keyboard remap utility for Mac OSX.  
   
 Then execute:
 
