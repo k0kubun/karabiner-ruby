@@ -71,7 +71,7 @@ You have to write "key expression" to specify keys to remap.
 #### key expression
 
 - `a`, `A`, `1`, `;`, `tab`, `Tab`, `space`, `up`, `down`
-  - any string without `-` will be considered as single key
+  - any string without `-` will be regarded as single key
   - ignore upcase or downcase
 - `C-a`, `Ctrl-a`
   - regarded as Control + A
@@ -83,6 +83,24 @@ You have to write "key expression" to specify keys to remap.
   - if you write just `A`, it will be regarded as small a
 - `Cmd-a`
   - regarded as Command + A
+- `Cmd-Shift-a`
+  - regarded as Command + Shift + A
+  - you can use any combination of Ctrl, Opt, Shift, Cmd
+
+#### available single keys
+
+```
+a b c ... x y z
+0 1 2 ... 7 8 9
+F1 F2 ... F11 F12
+\ [ ] ; ' , . / - =
+up down right left
+space tab delete forward_delete capslock
+
+Ctrl_R Ctrl_L
+Opt_R  Opt_L
+Cmd_R  Cmd_L
+```
 
 ## Contributing
 
