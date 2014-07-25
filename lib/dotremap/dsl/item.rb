@@ -1,6 +1,7 @@
 require "dotremap/dsl"
 require "dotremap/property"
 require "dotremap/remap"
+require "dotremap/openurl"
 
 module Dotremap::DSL::Item
   AVAILABLE_PROPERTIES = %i(
@@ -17,6 +18,11 @@ module Dotremap::DSL::Item
   def show_message(message)
     property = Dotremap::Property.new("autogen", "__ShowStatusMessage__ #{message}")
     childs << property
+  end
+
+  def invoke(application)
+    Dotremap::Openurl.register(application)
+    "VK_OPEN_URL_APP_#{application.gsub(/ /, '_')}"
   end
 
   private

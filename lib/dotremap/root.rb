@@ -1,3 +1,4 @@
+require "dotremap/openurl"
 require "dotremap/dsl/root"
 
 class Dotremap::Root
@@ -13,7 +14,8 @@ class Dotremap::Root
       "<?xml version=\"1.0\"?>",
       "<root>",
       childs.map(&:to_xml).join("\n\n").gsub(/^/, "  "),
+      Dotremap::Openurl.registered_xml.gsub(/^/, "  "),
       "</root>",
-    ].join("\n")
+    ].compact.join("\n")
   end
 end
