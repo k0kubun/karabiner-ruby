@@ -19,6 +19,11 @@ describe Dotremap do
     config.close!
   end
 
+  def prepare_dotremap(dotremap)
+    config.write(dotremap)
+    config.rewind
+  end
+
   def expect_result(expected_result)
     dotremap = Dotremap.new(config.path)
     dotremap.apply_configuration
@@ -26,7 +31,7 @@ describe Dotremap do
   end
 
   it "accepts blank config" do
-    config.write("")
+    prepare_dotremap("")
 
     expect_result(<<-EOS.unindent)
       <?xml version="1.0"?>
@@ -37,7 +42,7 @@ describe Dotremap do
   end
 
   it "accepts cmd combination" do
-    config.write(<<-EOS)
+    prepare_dotremap(<<-EOS)
       item "Command+A to Command+B" do
         remap "Cmd-A", to: "Cmd-B"
       end
@@ -46,7 +51,11 @@ describe Dotremap do
     expect_result(<<-EOS.unindent)
       <?xml version="1.0"?>
       <root>
-
+        <item>
+          <name>Command+A to Command+B</name>
+          <identifier>remap.command_a_to_command_b</identifier>
+          <autogen>__KeyToKey__ KeyCode::A, VK_COMMAND, KeyCode::B, VK_COMMAND</autogen>
+        </item>
       </root>
     EOS
   end
