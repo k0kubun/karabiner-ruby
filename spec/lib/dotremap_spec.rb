@@ -22,7 +22,7 @@ describe Dotremap do
     expect(result).to eq(expected_result)
   end
 
-  it "succeeds to run spec" do
+  it "accepts blank config" do
     config.write("")
     expect_result(<<-EOS.unindent)
       <?xml version="1.0"?>
