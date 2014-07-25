@@ -13,11 +13,8 @@ $ gem install dotremap
 
 ```rb
 # ~/.remap
-item "Control+PNBF to Up/Down/Left/Right", not: "TERMINAL" do
-  remap "C-p", to: "Up"
-  remap "C-n", to: "Down"
-  remap "C-b", to: "Left"
-  remap "C-f", to: "Right"
+item "Command+G to execute Google Chrome" do
+  remap "Cmd-g", to: invoke("Google Chrome")
 end
 ```
 
@@ -26,26 +23,6 @@ end
 ```bash
 $ dotremap
 ```
-
-It will replace Karabiner's private.xml with compiled ~/.remap:
-
-```xml
-<?xml version="1.0"?>
-<root>
-  <item>
-    <name>Control+PNBF to Up/Down/Left/Right</name>
-    <identifier>remap.control_pnbf_to_up_down_left_right</identifier>
-    <not>TERMINAL</not>
-    <autogen>__KeyToKey__ KeyCode::P, VK_CONTROL, KeyCode::CURSOR_UP</autogen>
-    <autogen>__KeyToKey__ KeyCode::N, VK_CONTROL, KeyCode::CURSOR_DOWN</autogen>
-    <autogen>__KeyToKey__ KeyCode::B, VK_CONTROL, KeyCode::CURSOR_LEFT</autogen>
-    <autogen>__KeyToKey__ KeyCode::F, VK_CONTROL, KeyCode::CURSOR_RIGHT</autogen>
-  </item>
-</root>
-```
-
-dotremap will automatically execute "ReloadXML".  
-Then activate your favorite configurations.
 
 ## Example
 
