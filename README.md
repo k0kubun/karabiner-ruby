@@ -4,6 +4,10 @@ Lightweight keymap configuration DSL for [Karabiner](https://pqrs.org/osx/karabi
 
 ## Installation
 
+First of all, you have to install [Karabiner](https://pqrs.org/osx/karabiner/index.html.en).  
+  
+Then execute:
+
 ```bash
 $ gem install dotremap
 ```
