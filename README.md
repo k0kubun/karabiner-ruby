@@ -113,7 +113,7 @@ Cmd_R  Cmd_L
 
 I'm sorry but currently some features are not documented here.  
 You can see [my ~/.remap](https://github.com/k0kubun/dotfiles/blob/master/.remap.rb) or
-[dotremap's spec file](https://github.com/k0kubun/dotremap/blob/master/spec/lib/dotremap_spec.rb).
+[dotremap's spec files](https://github.com/k0kubun/dotremap/tree/master/spec/lib).
 
 ## TODO
 
