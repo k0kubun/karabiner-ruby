@@ -1,3 +1,4 @@
+require "dotremap/karabiner"
 require "dotremap/version"
 require "dotremap/root"
 require "unindent"
@@ -6,8 +7,6 @@ require "fileutils"
 class Dotremap
   XML_FILE_NAME = "private.xml"
   XML_DIR = File.expand_path("~/Library/Application Support/Karabiner")
-  APP_PATH = "/Applications/Karabiner.app"
-  RELOAD_XML_PATH = "Contents/Applications/Utilities/ReloadXML.app"
 
   def initialize(config_path)
     @config_path = config_path
@@ -16,7 +15,8 @@ class Dotremap
 
   def apply_configuration
     replace_private_xml
-    reload_xml
+    Karabiner.reload_xml
+
     puts "Successfully updated Karabiner configuration"
   end
 
@@ -27,11 +27,6 @@ class Dotremap
 
     xml_path = File.join(XML_DIR, XML_FILE_NAME)
     File.write(xml_path, new_xml)
-  end
-
-  def reload_xml
-    reload_xml_path = File.join(APP_PATH, RELOAD_XML_PATH)
-    system("open #{reload_xml_path}")
   end
 
   def new_xml
