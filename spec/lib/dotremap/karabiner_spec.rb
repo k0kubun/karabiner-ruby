@@ -7,29 +7,22 @@ describe Dotremap::Karabiner do
     let(:cli_path) { Dotremap::Karabiner::CLI_PATH }
 
     before do
-      allow_any_instance_of(Kernel).to receive(:'`').with("#{cli_path} export").and_return(<<-EOS.unindent)
-        #!/bin/sh
-
-        cli=/Applications/Karabiner.app/Contents/Library/bin/karabiner
-
-        $cli set remap.command_k_to_command_l 1
-        /bin/echo -n .
-        $cli set repeat.initial_wait 100
-        /bin/echo -n .
-        $cli set repeat.wait 20
-        /bin/echo -n .
-        $cli set option.terminal_command_option 1
-        /bin/echo -n .
-        /bin/echo
+      allow_any_instance_of(Kernel).to receive(:'`').with("#{cli_path} changed").and_return(<<-EOS.unindent)
+        remap.command_k_to_command_l=1
+        repeat.initial_wait=100
+        repeat.wait=20
+        option.terminal_command_option=1
+        notsave.automatically_enable_keyboard_device=1
       EOS
     end
 
     it "returns config hash" do
       expect(subject).to eq({
-        "option.terminal_command_option" => "1",
-        "remap.command_k_to_command_l"   => "1",
-        "repeat.initial_wait"            => "100",
-        "repeat.wait"                    => "20",
+        "option.terminal_command_option"               => "1",
+        "remap.command_k_to_command_l"                 => "1",
+        "repeat.initial_wait"                          => "100",
+        "repeat.wait"                                  => "20",
+        "notsave.automatically_enable_keyboard_device" => "1",
       })
     end
   end

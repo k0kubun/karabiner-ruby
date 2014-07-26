@@ -8,19 +8,17 @@ module Dotremap::Karabiner
   end
 
   def self.current_config
-    export = `#{CLI_PATH} export`
-    config_by_export(export)
+    changed = `#{CLI_PATH} changed`
+    config_by_changed(changed)
   end
 
   private
 
-  def self.config_by_export(export)
+  def self.config_by_changed(changed)
     config = {}
-    export.each_line do |line|
-      if line =~ /^\$cli/
-        property, value = line.strip.gsub(/\$cli set /, "").split(" ")
-        config[property] = value
-      end
+    changed.each_line do |line|
+      property, value = line.strip.split("=")
+      config[property] = value
     end
     config
   end
