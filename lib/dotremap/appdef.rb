@@ -18,8 +18,10 @@ class Dotremap::Appdef
   def to_xml
     [
       "<appdef>",
-      "  <appname>#{@appname}</appname>",
-      @childs.map(&:to_xml).join("\n").gsub(/^/, "  "),
+      [
+        "<appname>#{@appname}</appname>",
+        *@childs.map(&:to_xml),
+      ].join("\n").gsub(/^/, "  "),
       "</appdef>",
     ].join("\n")
   end
