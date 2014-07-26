@@ -104,9 +104,10 @@ F1 F2 ... F11 F12
 Up Down Right Left
 space tab delete forward_delete capslock
 
-Ctrl_R Ctrl_L
-Opt_R  Opt_L
-Cmd_R  Cmd_L
+Ctrl_R  Ctrl_L
+Opt_R   Opt_L
+Cmd_R   Cmd_L
+Shift_R Shift_L
 ```
 
 ### Advanced usage
