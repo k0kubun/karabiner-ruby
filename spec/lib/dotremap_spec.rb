@@ -59,4 +59,190 @@ describe Dotremap do
       </root>
     EOS
   end
+
+  it "accepts multiple remaps" do
+    prepare_dotremap(<<-EOS)
+      item "multiple remaps" do
+        remap "Cmd-A", to: "Cmd-B"
+        remap "Shift-A", to: "Shift-B"
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>multiple remaps</name>
+          <identifier>remap.multiple_remaps</identifier>
+          <autogen>__KeyToKey__ KeyCode::A, VK_COMMAND, KeyCode::B, VK_COMMAND</autogen>
+          <autogen>__KeyToKey__ KeyCode::A, VK_SHIFT, KeyCode::B, VK_SHIFT</autogen>
+        </item>
+      </root>
+    EOS
+  end
+
+  it "accepts multiple items" do
+    prepare_dotremap(<<-EOS)
+      item "first item" do
+        remap "Cmd-C-A", to: "Cmd-M-B"
+      end
+
+      item "second item" do
+        remap "Shift-Opt-A", to: "Shift-Cmd-B"
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>first item</name>
+          <identifier>remap.first_item</identifier>
+          <autogen>__KeyToKey__ KeyCode::A, VK_COMMAND | VK_CONTROL, KeyCode::B, VK_COMMAND | VK_OPTION</autogen>
+        </item>
+
+        <item>
+          <name>second item</name>
+          <identifier>remap.second_item</identifier>
+          <autogen>__KeyToKey__ KeyCode::A, VK_SHIFT | VK_OPTION, KeyCode::B, VK_SHIFT | VK_COMMAND</autogen>
+        </item>
+      </root>
+    EOS
+  end
+
+  it "accepts appdef and app option" do
+    prepare_dotremap(<<-EOS)
+      appdef "CHROME", equal: "com.google.Chrome"
+
+      item "Command+K to Command+L", only: "CHROME" do
+        remap "Cmd-K", to: "Cmd-L"
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <appdef>
+          <appname>CHROME</appname>
+          <equal>com.google.Chrome</equal>
+        </appdef>
+
+        <item>
+          <name>Command+K to Command+L</name>
+          <identifier>remap.command_k_to_command_l</identifier>
+          <only>CHROME</only>
+          <autogen>__KeyToKey__ KeyCode::K, VK_COMMAND, KeyCode::L, VK_COMMAND</autogen>
+        </item>
+      </root>
+    EOS
+  end
+
+  it "accepts config and show_message" do
+    prepare_dotremap(<<-EOS)
+      item "CapsLock ON", config_not: "notsave.private_capslock_on" do
+        remap "Cmd-L", to: ["capslock", "VK_CONFIG_FORCE_ON_notsave_private_capslock_on"]
+      end
+
+      item "CapsLock OFF", config_only: "notsave.private_capslock_on" do
+        remap "Cmd-L", to: ["capslock", "VK_CONFIG_FORCE_OFF_notsave_private_capslock_on"]
+      end
+
+      item "CapsLock Mode" do
+        identifier "notsave.private_capslock_on", vk_config: "true"
+        show_message "CapsLock"
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>CapsLock ON</name>
+          <identifier>remap.capslock_on</identifier>
+          <config_not>notsave.private_capslock_on</config_not>
+          <autogen>__KeyToKey__ KeyCode::L, VK_COMMAND, KeyCode::CAPSLOCK, KeyCode::VK_CONFIG_FORCE_ON_notsave_private_capslock_on</autogen>
+        </item>
+
+        <item>
+          <name>CapsLock OFF</name>
+          <identifier>remap.capslock_off</identifier>
+          <config_only>notsave.private_capslock_on</config_only>
+          <autogen>__KeyToKey__ KeyCode::L, VK_COMMAND, KeyCode::CAPSLOCK, KeyCode::VK_CONFIG_FORCE_OFF_notsave_private_capslock_on</autogen>
+        </item>
+
+        <item>
+          <name>CapsLock Mode</name>
+          <identifier vk_config="true">notsave.private_capslock_on</identifier>
+          <autogen>__ShowStatusMessage__ CapsLock</autogen>
+        </item>
+      </root>
+    EOS
+  end
+
+  it "accepts implicit autogen selection" do
+    prepare_dotremap(<<-EOS)
+      item "Control+LeftClick to Command+LeftClick" do
+        autogen "__PointingButtonToPointingButton__ PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND"
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>Control+LeftClick to Command+LeftClick</name>
+          <identifier>remap.control_leftclick_to_command_leftclick</identifier>
+          <autogen>__PointingButtonToPointingButton__ PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND</autogen>
+        </item>
+      </root>
+    EOS
+  end
+
+  it "application invoking" do
+    prepare_dotremap(<<-EOS)
+      item "Application shortcuts" do
+        remap "C-o", to: invoke("YoruFukurou")
+        remap "C-u", to: invoke("Google Chrome")
+        remap "C-h", to: invoke("iTerm")
+      end
+
+      item "duplicate app" do
+        remap "C-a", to: invoke("YoruFukurou")
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>Application shortcuts</name>
+          <identifier>remap.application_shortcuts</identifier>
+          <autogen>__KeyToKey__ KeyCode::O, VK_CONTROL, KeyCode::VK_OPEN_URL_APP_YoruFukurou</autogen>
+          <autogen>__KeyToKey__ KeyCode::U, VK_CONTROL, KeyCode::VK_OPEN_URL_APP_Google_Chrome</autogen>
+          <autogen>__KeyToKey__ KeyCode::H, VK_CONTROL, KeyCode::VK_OPEN_URL_APP_iTerm</autogen>
+        </item>
+
+        <item>
+          <name>duplicate app</name>
+          <identifier>remap.duplicate_app</identifier>
+          <autogen>__KeyToKey__ KeyCode::A, VK_CONTROL, KeyCode::VK_OPEN_URL_APP_YoruFukurou</autogen>
+        </item>
+
+        <vkopenurldef>
+          <name>KeyCode::VK_OPEN_URL_APP_YoruFukurou</name>
+          <url type="file">/Applications/YoruFukurou.app</url>
+        </vkopenurldef>
+
+        <vkopenurldef>
+          <name>KeyCode::VK_OPEN_URL_APP_Google_Chrome</name>
+          <url type="file">/Applications/Google Chrome.app</url>
+        </vkopenurldef>
+
+        <vkopenurldef>
+          <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
+          <url type="file">/Applications/iTerm.app</url>
+        </vkopenurldef>
+      </root>
+    EOS
+  end
 end
