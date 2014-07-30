@@ -1,6 +1,8 @@
 require "dotremap/dsl/item"
+require "dotremap/xml_tree"
 
 class Dotremap::Item
+  include Dotremap::XmlTree
   include Dotremap::DSL::Item
 
   AVAILABLE_OPTIONS = %i(
@@ -11,18 +13,18 @@ class Dotremap::Item
   ).freeze
 
   def initialize(name, options)
-    @childs = []
-
     if name
-      @childs << Dotremap::Property.new("name", name)
+      property = Dotremap::Property.new("name", name)
+      add_child(property)
     end
 
     options.each do |option, value|
       raise "Unavailable option: #{option}" unless AVAILABLE_OPTIONS.include?(option)
-      @childs << Dotremap::Property.new(option, value)
+
+      property = Dotremap::Property.new(option, value)
+      add_child(property)
     end
   end
-  attr_accessor :childs
 
   def to_xml
     validate_name_existence
@@ -38,12 +40,12 @@ class Dotremap::Item
   private
 
   def validate_name_existence
-    properties = childs.select { |c| c.is_a?(Dotremap::Property) }
+    properties = search_childs(Dotremap::Property)
     raise "Name property does not exist" unless properties.map(&:attr).include?("name")
   end
 
   def generate_identifier
-    properties = childs.select { |c| c.is_a?(Dotremap::Property) }
+    properties = search_childs(Dotremap::Property)
     return if properties.map(&:attr).include?("identifier")
 
     name = properties.find { |p| p.attr == "name" }

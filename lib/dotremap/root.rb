@@ -2,12 +2,8 @@ require "dotremap/openurl"
 require "dotremap/dsl/root"
 
 class Dotremap::Root
+  include Dotremap::XmlTree
   include Dotremap::DSL::Root
-
-  def initialize
-    @childs = []
-  end
-  attr_accessor :childs
 
   def to_xml
     [

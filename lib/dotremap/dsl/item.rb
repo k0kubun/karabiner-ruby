@@ -12,12 +12,12 @@ module Dotremap::DSL::Item
 
   def remap(target, options = {})
     remap = Dotremap::Remap.new(target, options[:to])
-    childs << remap
+    add_child(remap)
   end
 
   def show_message(message)
     property = Dotremap::Property.new("autogen", "__ShowStatusMessage__ #{message}")
-    childs << property
+    add_child(property)
   end
 
   def invoke(application)
@@ -30,7 +30,7 @@ module Dotremap::DSL::Item
   def method_missing(property, value = '', options = {})
     if AVAILABLE_PROPERTIES.include?(property)
       property = Dotremap::Property.new(property, value, options)
-      childs << property
+      add_child(property)
     else
       super
     end
