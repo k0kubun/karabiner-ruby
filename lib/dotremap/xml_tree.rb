@@ -1,6 +1,8 @@
 module Dotremap::XmlTree
-  def add_child(object)
-    childs << object
+  def add_child(*objects)
+    objects.each do |object|
+      childs << object
+    end
   end
 
   def search_childs(klass)

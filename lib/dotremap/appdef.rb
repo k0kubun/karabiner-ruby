@@ -10,7 +10,8 @@ class Dotremap::Appdef
   ).freeze
 
   def initialize(appname, options)
-    @appname = appname
+    property = Dotremap::Property.new("appname", appname)
+    add_child(property)
 
     options.each do |option, value|
       raise "Unavailable option: #{property}" unless AVAILABLE_OPTIONS.include?(option)
@@ -23,10 +24,7 @@ class Dotremap::Appdef
   def to_xml
     [
       "<appdef>",
-      [
-        "<appname>#{@appname}</appname>",
-        *childs.map(&:to_xml),
-      ].join("\n").gsub(/^/, "  "),
+      childs.map(&:to_xml).join("\n").gsub(/^/, "  "),
       "</appdef>",
     ].join("\n")
   end
