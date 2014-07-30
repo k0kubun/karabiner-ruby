@@ -30,11 +30,7 @@ class Dotremap::Item
     validate_name_existence
     generate_identifier
 
-    [
-      "<item>",
-      childs.map(&:to_xml).join("\n").gsub(/^/, "  "),
-      "</item>",
-    ].join("\n")
+    super
   end
 
   private

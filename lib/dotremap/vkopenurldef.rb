@@ -8,12 +8,4 @@ class Dotremap::Vkopenurldef
     url  = Dotremap::Property.new("url", "/Applications/#{application}.app", type: "file")
     add_child(name, url)
   end
-
-  def to_xml
-    [
-      "<vkopenurldef>",
-      childs.map(&:to_xml).join("\n").gsub(/^/, "  "),
-      "</vkopenurldef>",
-    ].join("\n")
-  end
 end

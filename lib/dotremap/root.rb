@@ -14,11 +14,7 @@ class Dotremap::Root
 
     [
       "<?xml version=\"1.0\"?>",
-      "<root>",
-      [
-        childs.map(&:to_xml).join("\n\n"),
-      ].compact.join("\n").gsub(/^/, "  "),
-      "</root>",
+      super(1),
     ].join("\n")
   end
 end

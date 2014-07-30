@@ -20,12 +20,4 @@ class Dotremap::Appdef
       add_child(property)
     end
   end
-
-  def to_xml
-    [
-      "<appdef>",
-      childs.map(&:to_xml).join("\n").gsub(/^/, "  "),
-      "</appdef>",
-    ].join("\n")
-  end
 end
