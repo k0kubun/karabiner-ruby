@@ -1,5 +1,5 @@
+require "dotremap/namespace"
 require "dotremap/appdef"
-require "dotremap/dsl"
 require "dotremap/item"
 
 module Dotremap::DSL::Root

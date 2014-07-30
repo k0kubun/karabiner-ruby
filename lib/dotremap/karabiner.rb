@@ -1,4 +1,4 @@
-require "dotremap/version"
+require "dotremap/namespace"
 
 module Dotremap::Karabiner
   CLI_PATH = "/Applications/Karabiner.app/Contents/Library/bin/karabiner"

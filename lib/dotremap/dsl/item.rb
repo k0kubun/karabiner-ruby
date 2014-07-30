@@ -1,4 +1,4 @@
-require "dotremap/dsl"
+require "dotremap/namespace"
 require "dotremap/property"
 require "dotremap/remap"
 require "dotremap/openurl"
