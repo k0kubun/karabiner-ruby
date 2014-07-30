@@ -1,7 +1,7 @@
 require "dotremap/namespace"
 require "dotremap/property"
 require "dotremap/remap"
-require "dotremap/openurl"
+require "dotremap/invoke_history"
 
 module Dotremap::DSL::Item
   AVAILABLE_PROPERTIES = %i(
@@ -21,7 +21,7 @@ module Dotremap::DSL::Item
   end
 
   def invoke(application)
-    Dotremap::Openurl.register(application)
+    Dotremap::InvokeHistory.register(application)
     "VK_OPEN_URL_APP_#{application.gsub(/ /, '_')}"
   end
 

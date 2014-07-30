@@ -1,4 +1,4 @@
-require "dotremap/openurl"
+require "dotremap/invoke_history"
 require "dotremap/vkopenurldef"
 require "dotremap/dsl/root"
 
@@ -7,7 +7,7 @@ class Dotremap::Root
   include Dotremap::DSL::Root
 
   def to_xml
-    Dotremap::Openurl.registered_applications.each do |application|
+    Dotremap::InvokeHistory.registered_applications.each do |application|
       vkopenurldef = Dotremap::Vkopenurldef.new(application)
       add_child(vkopenurldef)
     end

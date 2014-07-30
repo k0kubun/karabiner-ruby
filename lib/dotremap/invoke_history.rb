@@ -1,7 +1,7 @@
 require "set"
 require "dotremap/vkopenurldef"
 
-module Dotremap::Openurl
+module Dotremap::InvokeHistory
   def self.register(application)
     registered_applications.add(application)
   end
