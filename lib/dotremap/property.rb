@@ -4,10 +4,10 @@ class Dotremap::Property
     @value = value
     @options = options
   end
-  attr_accessor :attr, :value, :options
+  attr_accessor :attr, :value
 
   def to_xml
-    open_tag = options.map { |a, v| "#{a}=\"#{v}\"" }.unshift(attr).join(" ")
+    open_tag = @options.map { |a, v| "#{a}=\"#{v}\"" }.unshift(attr).join(" ")
     "<#{open_tag}>#{value}</#{attr}>"
   end
 end
