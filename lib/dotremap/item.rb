@@ -12,7 +12,9 @@ class Dotremap::Item
     config_only
   ).freeze
 
-  def initialize(name, options)
+  def initialize(name, options = {})
+    @skip_identifier = options.delete(:skip_identifier)
+
     if name
       property = Dotremap::Property.new("name", name)
       add_child(property)
@@ -28,7 +30,7 @@ class Dotremap::Item
 
   def to_xml
     validate_name_existence
-    generate_identifier
+    generate_identifier unless @skip_identifier
 
     super
   end

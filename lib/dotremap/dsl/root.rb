@@ -1,12 +1,16 @@
 require "dotremap/namespace"
 require "dotremap/appdef"
 require "dotremap/item"
+require "dotremap/group"
+require "dotremap/dsl/group"
 
 module Dotremap::DSL::Root
-  def item(name = nil, options = {}, &block)
-    item = Dotremap::Item.new(name, options)
-    item.instance_exec(&block)
-    add_child(item)
+  include Dotremap::DSL::Group
+
+  def group(name, &block)
+    group = Dotremap::Group.new(name)
+    group.instance_exec(&block)
+    add_child(group)
   end
 
   def appdef(appname = '', options = {})

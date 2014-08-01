@@ -2,6 +2,10 @@ require "set"
 require "dotremap/vkopenurldef"
 
 module Dotremap::InvokeHistory
+  def self.clear_histroy
+    @@registered_applications = Set.new
+  end
+
   def self.register(application)
     registered_applications.add(application)
   end

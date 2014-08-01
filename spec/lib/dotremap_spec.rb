@@ -245,4 +245,35 @@ describe Dotremap do
       </root>
     EOS
   end
+
+  it "accepts nested items" do
+    prepare_dotremap(<<-EOS)
+      group "Option" do
+        item "First" do
+          identifier "option.option_first"
+        end
+
+        item "Second" do
+          identifier "option.option_second"
+        end
+      end
+    EOS
+
+    expect_result(<<-EOS.unindent)
+      <?xml version="1.0"?>
+      <root>
+        <item>
+          <name>Option</name>
+          <item>
+            <name>First</name>
+            <identifier>option.option_first</identifier>
+          </item>
+          <item>
+            <name>Second</name>
+            <identifier>option.option_second</identifier>
+          </item>
+        </item>
+      </root>
+    EOS
+  end
 end

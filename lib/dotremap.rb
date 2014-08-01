@@ -10,6 +10,7 @@ class Dotremap
 
   def initialize(config_path)
     @config_path = config_path
+    Dotremap::InvokeHistory.clear_histroy
   end
   attr_reader :config_path
 
