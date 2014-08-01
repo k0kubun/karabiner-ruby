@@ -1,4 +1,6 @@
 class Dotremap::Property
+  include Dotremap::XmlTree
+
   def initialize(attr, value, options = {})
     @attr = attr.to_s
     @value = value

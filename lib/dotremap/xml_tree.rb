@@ -1,7 +1,13 @@
 module Dotremap::XmlTree
+  attr_reader :parent
+
   def add_child(*objects)
     objects.each do |object|
       childs << object
+    end
+
+    childs.each do |child|
+      child.parent = self
     end
   end
 
@@ -20,9 +26,17 @@ module Dotremap::XmlTree
     ].join("\n")
   end
 
+  protected
+
+  attr_writer :parent
+
   private
 
   def childs
     @childs ||= []
+  end
+
+  def parent
+    @parent
   end
 end
