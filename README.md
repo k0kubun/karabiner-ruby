@@ -1,13 +1,13 @@
-# Dotremap [![Build Status](https://travis-ci.org/k0kubun/dotremap.png?branch=master)](https://travis-ci.org/k0kubun/dotremap)
+# Karabiner DSL
 
 Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
 
-## Why dotremap?
+## Why karabiner-dsl?
 
 Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.ja) is very hard to write.  
-Dotremap's DSL is its wrapper, which is easy-to-write and readable.  
+Karabiner DSL is its wrapper, which is easy-to-write and readable.  
   
-If you write Karabiner's config by dotremap, you can update your keyremap configuration quickly.
+If you write Karabiner's config with Karabiner DSL, you can update your keyremap configuration quickly.
 
 ## Installation
 
@@ -17,8 +17,11 @@ Karabiner is a keyboard remap utility for Mac OSX.
 Then execute:
 
 ```bash
-$ gem install dotremap
+$ gem install karabiner
 ```
+
+Then `karabiner` executable will be installed.
+This gem provides only `karabiner dsl` subcommand and other subcommands are delegated to original CLI for Karabiner.app.
 
 ## Usage
 ### 1. Create ~/.remap
@@ -29,26 +32,26 @@ item "Command+G to open Google Chrome" do
 end
 ```
 
-### 2. Execute dotremap command
+### 2. Execute karabiner dsl command
 
 ```bash
-$ dotremap
+$ karabiner dsl
 ```
 
-Then dotremap will update Karabiner's config as you expected.
+Then `karabiner dsl` will update Karabiner's config as you expected.
 
-![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/disabled.png)
+![](https://raw.githubusercontent.com/k0kubun/karabiner-dsl/master/img/disabled.png)
 
 ### 3. Enable your favorite configurations
 
-![](https://raw.githubusercontent.com/k0kubun/dotremap/master/img/enabled.png)
+![](https://raw.githubusercontent.com/k0kubun/karabiner-dsl/master/img/enabled.png)
 
 Enjoy!
 
 ## How to write ~/.remap
 ### Basics
 
-Dotremap's DSL is a superset of Ruby.  
+karabiner-dsl's DSL is a superset of Ruby.  
 So you can use any Ruby methods in ~/.remap.
 
 #### item
@@ -59,7 +62,7 @@ item "configuration unit" do
 end
 ```
 
-In dotremap, any Karabiner's configuration unit is expressed in `item` and its `do ~ end` block.  
+In karabiner-dsl, any Karabiner's configuration unit is expressed in `item` and its `do ~ end` block.  
 You can group some remap configurations in one item and enable them in one click.
 
 #### remap
@@ -110,19 +113,9 @@ Cmd_R   Cmd_L
 Shift_R Shift_L
 ```
 
-### Advanced usage
-
-I'm sorry but currently some features are not documented here.  
-You can see [my ~/.remap](https://github.com/k0kubun/dotfiles/blob/master/.remap.rb) or
-[dotremap's spec files](https://github.com/k0kubun/dotremap/tree/master/spec/lib).
-
-## TODO
-
-- Document all features in this README
-
 ## Contributing
 
-1. Fork it ( https://github.com/k0kubun/dotremap/fork )
+1. Fork it ( https://github.com/k0kubun/karabiner-dsl/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
