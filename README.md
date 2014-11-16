@@ -1,4 +1,4 @@
-# Karabiner DSL
+# Karabiner DSL [![Build Status](https://travis-ci.org/k0kubun/karabiner-dsl.png?branch=master)](https://travis-ci.org/k0kubun/karabiner-dsl)
 
 Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
 
