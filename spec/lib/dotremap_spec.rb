@@ -1,15 +1,15 @@
 require "spec_helper"
 require "tempfile"
 
-describe Dotremap do
+describe Karabiner do
   let!(:config) { Tempfile.new(".karabiner") }
   let(:xml_dir) { "/tmp" }
-  let(:xml_path) { File.join(xml_dir, Dotremap::XML_FILE_NAME) }
+  let(:xml_path) { File.join(xml_dir, Karabiner::XML_FILE_NAME) }
   let(:result) { File.read(xml_path) }
 
   before do
-    stub_const("Dotremap::XML_DIR", xml_dir)
-    allow(Dotremap::CLI).to receive(:reload_xml)
+    stub_const("Karabiner::XML_DIR", xml_dir)
+    allow(Karabiner::CLI).to receive(:reload_xml)
 
     # Silence stdout
     allow_any_instance_of(Kernel).to receive(:puts)
@@ -25,7 +25,7 @@ describe Dotremap do
   end
 
   def expect_result(expected_result)
-    dotremap = Dotremap.new(config.path)
+    dotremap = Karabiner.new(config.path)
     dotremap.apply_configuration
     expect(result).to eq(expected_result)
   end

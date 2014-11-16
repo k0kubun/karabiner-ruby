@@ -1,4 +1,4 @@
-module Dotremap::XmlTree
+module Karabiner::XmlTree
   attr_reader :parent
 
   def add_child(*objects)

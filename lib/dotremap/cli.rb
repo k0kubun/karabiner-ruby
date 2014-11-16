@@ -1,6 +1,6 @@
 require "dotremap/namespace"
 
-module Dotremap::CLI
+module Karabiner::CLI
   CLI_PATH = "/Applications/Karabiner.app/Contents/Library/bin/karabiner"
 
   def self.reload_xml

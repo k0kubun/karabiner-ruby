@@ -1,7 +1,7 @@
 require "set"
 require "dotremap/vkopenurldef"
 
-module Dotremap::InvokeHistory
+module Karabiner::InvokeHistory
   def self.clear_histroy
     @@registered_applications = Set.new
   end

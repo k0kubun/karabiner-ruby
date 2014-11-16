@@ -1,16 +1,16 @@
-require "dotremap/karabiner"
+require "dotremap/cli"
 require "dotremap/version"
 require "dotremap/root"
 require "unindent"
 require "fileutils"
 
-class Dotremap
+class Karabiner
   XML_FILE_NAME = "private.xml"
   XML_DIR = File.expand_path("~/Library/Application Support/Karabiner")
 
   def initialize(config_path)
     @config_path = config_path
-    Dotremap::InvokeHistory.clear_histroy
+    Karabiner::InvokeHistory.clear_histroy
   end
   attr_reader :config_path
 

@@ -1,7 +1,7 @@
 require "forwardable"
 require "dotremap/namespace"
 
-class Dotremap::Config
+class Karabiner::Config
   extend Forwardable
 
   def_delegator :@parent, :item

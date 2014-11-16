@@ -1,15 +1,15 @@
 require "dotremap/key"
 require "dotremap/property"
 
-class Dotremap::Remap < Dotremap::Property
+class Karabiner::Remap < Karabiner::Property
   def initialize(from, to)
     tos = [to].flatten
 
     super(
       "autogen",
       [
-        "__KeyToKey__ #{Dotremap::Key.new(from)}",
-        *tos.map { |to| Dotremap::Key.new(to) },
+        "__KeyToKey__ #{Karabiner::Key.new(from)}",
+        *tos.map { |to| Karabiner::Key.new(to) },
       ].join(", "),
     )
   end

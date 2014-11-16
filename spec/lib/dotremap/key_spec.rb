@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Dotremap::Key do
+describe Karabiner::Key do
   describe "#to_s" do
     EXPECTED_RESULTS = {
       "a"       => "KeyCode::A",
@@ -96,7 +96,7 @@ describe Dotremap::Key do
     end
 
     it "converts double key combination as expected" do
-      Dotremap::Key::PREFIX_MAP.each do |prefix, vk|
+      Karabiner::Key::PREFIX_MAP.each do |prefix, vk|
         key, keycode = EXPECTED_RESULTS.to_a.sample
         expect(described_class.new("#{prefix}-#{key}").to_s).to eq("#{keycode}, #{vk}")
       end
@@ -104,7 +104,7 @@ describe Dotremap::Key do
 
     it "converts triple key combination as expected" do
       key, keycode = EXPECTED_RESULTS.to_a.sample
-      unique_maps = Dotremap::Key::PREFIX_MAP.to_a.sort_by { rand }.uniq { |a| a[1] }
+      unique_maps = Karabiner::Key::PREFIX_MAP.to_a.sort_by { rand }.uniq { |a| a[1] }
       unique_maps.combination(2) do |(prefix1, vk1), (prefix2, vk2)|
         expect(described_class.new("#{prefix1}-#{prefix2}-#{key}").to_s).to eq("#{keycode}, #{vk1} | #{vk2}")
       end

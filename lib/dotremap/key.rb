@@ -1,4 +1,4 @@
-class Dotremap::Key
+class Karabiner::Key
   KEYCODE_MAP = {
     "0"      => "KEY_0",
     "1"      => "KEY_1",

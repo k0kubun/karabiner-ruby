@@ -5,7 +5,7 @@ require 'dotremap/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "dotremap"
-  spec.version       = Dotremap::VERSION
+  spec.version       = Karabiner::VERSION
   spec.authors       = ["Takashi Kokubun"]
   spec.email         = ["takashikkbn@gmail.com"]
   spec.summary       = %q{Lightweight keyremap configuration DSL}

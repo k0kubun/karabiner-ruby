@@ -3,7 +3,7 @@ require "dotremap/property"
 require "dotremap/remap"
 require "dotremap/invoke_history"
 
-module Dotremap::DSL::Item
+module Karabiner::DSL::Item
   AVAILABLE_PROPERTIES = %i(
     name
     identifier
@@ -11,17 +11,17 @@ module Dotremap::DSL::Item
   ).freeze
 
   def remap(target, options = {})
-    remap = Dotremap::Remap.new(target, options[:to])
+    remap = Karabiner::Remap.new(target, options[:to])
     add_child(remap)
   end
 
   def show_message(message)
-    property = Dotremap::Property.new("autogen", "__ShowStatusMessage__ #{message}")
+    property = Karabiner::Property.new("autogen", "__ShowStatusMessage__ #{message}")
     add_child(property)
   end
 
   def invoke(application)
-    Dotremap::InvokeHistory.register(application)
+    Karabiner::InvokeHistory.register(application)
     "VK_OPEN_URL_APP_#{application.gsub(/ /, '_')}"
   end
 
@@ -29,7 +29,7 @@ module Dotremap::DSL::Item
 
   def method_missing(property, value = '', options = {})
     if AVAILABLE_PROPERTIES.include?(property)
-      property = Dotremap::Property.new(property, value, options)
+      property = Karabiner::Property.new(property, value, options)
       add_child(property)
     else
       super

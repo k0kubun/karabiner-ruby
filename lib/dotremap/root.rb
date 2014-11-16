@@ -2,17 +2,17 @@ require "dotremap/invoke_history"
 require "dotremap/vkopenurldef"
 require "dotremap/dsl/root"
 
-class Dotremap::Root
-  include Dotremap::XmlTree
-  include Dotremap::DSL::Root
+class Karabiner::Root
+  include Karabiner::XmlTree
+  include Karabiner::DSL::Root
 
   def initialize
     @configs = []
   end
 
   def to_xml
-    Dotremap::InvokeHistory.registered_applications.each do |application|
-      vkopenurldef = Dotremap::Vkopenurldef.new(application)
+    Karabiner::InvokeHistory.registered_applications.each do |application|
+      vkopenurldef = Karabiner::Vkopenurldef.new(application)
       add_child(vkopenurldef)
     end
 

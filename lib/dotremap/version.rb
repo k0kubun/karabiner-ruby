@@ -1,3 +1,3 @@
-class Dotremap
+class Karabiner
   VERSION = "0.0.7"
 end

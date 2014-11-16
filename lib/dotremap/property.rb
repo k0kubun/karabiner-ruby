@@ -1,5 +1,5 @@
-class Dotremap::Property
-  include Dotremap::XmlTree
+class Karabiner::Property
+  include Karabiner::XmlTree
 
   def initialize(attr, value, options = {})
     @attr = attr.to_s

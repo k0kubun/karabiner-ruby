@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe Dotremap::Appdef do
+describe Karabiner::Appdef do
   describe "#to_xml" do
     it "returns valid xml from appdef with equal" do
-      appdef = Dotremap::Appdef.new("CHROME", equal: "com.google.Chrome")
+      appdef = Karabiner::Appdef.new("CHROME", equal: "com.google.Chrome")
       expect(appdef.to_xml).to eq(<<-EOS.unindent.strip)
         <appdef>
           <appname>CHROME</appname>
@@ -13,7 +13,7 @@ describe Dotremap::Appdef do
     end
 
     it "returns valid xml from appdef with prefix" do
-      appdef = Dotremap::Appdef.new("CHROME", prefix: "com")
+      appdef = Karabiner::Appdef.new("CHROME", prefix: "com")
       expect(appdef.to_xml).to eq(<<-EOS.unindent.strip)
         <appdef>
           <appname>CHROME</appname>
@@ -23,7 +23,7 @@ describe Dotremap::Appdef do
     end
 
     it "returns valid xml from appdef with suffix" do
-      appdef = Dotremap::Appdef.new("CHROME", suffix: "Chrome")
+      appdef = Karabiner::Appdef.new("CHROME", suffix: "Chrome")
       expect(appdef.to_xml).to eq(<<-EOS.unindent.strip)
         <appdef>
           <appname>CHROME</appname>
