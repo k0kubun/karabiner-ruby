@@ -5,7 +5,7 @@ $:.unshift lib unless $:.include? lib
 
 require "dotremap"
 
-DOTREMAP_PATH = File.expand_path("~/.remap")
+DOTREMAP_PATH = File.expand_path("~/.karabiner")
 
 dotremap = Dotremap.new(DOTREMAP_PATH)
 dotremap.apply_configuration

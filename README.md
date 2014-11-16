@@ -24,7 +24,7 @@ Then `karabiner` executable will be installed.
 This gem provides only `karabiner dsl` subcommand and other subcommands are delegated to original CLI for Karabiner.app.
 
 ## Usage
-### 1. Create ~/.remap
+### 1. Create ~/.karabiner
 
 ```rb
 item "Command+G to open Google Chrome" do
@@ -48,11 +48,11 @@ Then `karabiner dsl` will update Karabiner's config as you expected.
 
 Enjoy!
 
-## How to write ~/.remap
+## How to write ~/.karabiner
 ### Basics
 
 karabiner-dsl's DSL is a superset of Ruby.  
-So you can use any Ruby methods in ~/.remap.
+So you can use any Ruby methods in ~/.karabiner.
 
 #### item
 

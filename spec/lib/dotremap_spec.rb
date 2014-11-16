@@ -2,7 +2,7 @@ require "spec_helper"
 require "tempfile"
 
 describe Dotremap do
-  let!(:config) { Tempfile.new(".remap") }
+  let!(:config) { Tempfile.new(".karabiner") }
   let(:xml_dir) { "/tmp" }
   let(:xml_path) { File.join(xml_dir, Dotremap::XML_FILE_NAME) }
   let(:result) { File.read(xml_path) }
