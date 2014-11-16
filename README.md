@@ -129,15 +129,14 @@ item "Control+PNBF to Up/Down/Left/Right" do
   remap "C-f", to: "Right"
 end
 
-item "Command+O|P to Command+{|}" do
-  remap "Cmd-P", to: "Cmd-Shift-]"
-  remap "Cmd-O", to: "Cmd-Shift-["
-end
-
 appdef "HIPCHAT", equal: "com.hipchat.HipChat"
 item "HipChat Room Change", only: "HIPCHAT" do
   remap "Cmd-K", to: "Cmd-Shift-["
   remap "Cmd-J", to: "Cmd-Shift-]"
+end
+
+item "Window change in the same app" do
+  remap "Opt-tab", to: "Cmd-F1"
 end
 ```
 
