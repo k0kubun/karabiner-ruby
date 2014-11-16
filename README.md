@@ -2,7 +2,7 @@
 
 Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
 
-## Why karabiner-dsl?
+## Why Karabiner DSL?
 
 Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.ja) is very hard to write.  
 Karabiner DSL is its wrapper, which is easy-to-write and readable.  
