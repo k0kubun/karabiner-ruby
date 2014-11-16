@@ -9,7 +9,7 @@ describe Dotremap do
 
   before do
     stub_const("Dotremap::XML_DIR", xml_dir)
-    allow(Dotremap::Karabiner).to receive(:reload_xml)
+    allow(Dotremap::CLI).to receive(:reload_xml)
 
     # Silence stdout
     allow_any_instance_of(Kernel).to receive(:puts)

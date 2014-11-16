@@ -16,7 +16,7 @@ class Dotremap
 
   def apply_configuration
     replace_private_xml
-    Karabiner.reload_xml
+    CLI.reload_xml
 
     puts "Successfully updated Karabiner configuration"
   end

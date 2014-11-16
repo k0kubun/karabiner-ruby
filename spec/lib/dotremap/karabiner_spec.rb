@@ -1,10 +1,10 @@
 require "spec_helper"
 
-describe Dotremap::Karabiner do
+describe Dotremap::CLI do
   describe ".current_config" do
     subject { described_class.current_config }
 
-    let(:cli_path) { Dotremap::Karabiner::CLI_PATH }
+    let(:cli_path) { Dotremap::CLI::CLI_PATH }
 
     before do
       allow_any_instance_of(Kernel).to receive(:'`').with("#{cli_path} changed").and_return(<<-EOS.unindent)
