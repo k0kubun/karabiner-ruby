@@ -113,6 +113,34 @@ Cmd_R   Cmd_L
 Shift_R Shift_L
 ```
 
+## Sample
+
+```rb
+item "Application shortcuts" do
+  remap "C-o", to: invoke("YoruFukurou")
+  remap "C-u", to: invoke("Google Chrome")
+  remap "C-h", to: invoke("iTerm")
+end
+
+item "Control+PNBF to Up/Down/Left/Right" do
+  remap "C-p", to: "Up"
+  remap "C-n", to: "Down"
+  remap "C-b", to: "Left"
+  remap "C-f", to: "Right"
+end
+
+item "Command+O|P to Command+{|}" do
+  remap "Cmd-P", to: "Cmd-Shift-]"
+  remap "Cmd-O", to: "Cmd-Shift-["
+end
+
+appdef "HIPCHAT", equal: "com.hipchat.HipChat"
+item "HipChat Room Change", only: "HIPCHAT" do
+  remap "Cmd-K", to: "Cmd-Shift-["
+  remap "Cmd-J", to: "Cmd-Shift-]"
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/k0kubun/karabiner-dsl/fork )
