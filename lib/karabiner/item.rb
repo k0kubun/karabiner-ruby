@@ -1,5 +1,5 @@
-require "dotremap/dsl/item"
-require "dotremap/xml_tree"
+require "karabiner/dsl/item"
+require "karabiner/xml_tree"
 
 class Karabiner::Item
   include Karabiner::XmlTree

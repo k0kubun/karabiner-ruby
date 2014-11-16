@@ -1,5 +1,5 @@
 require "set"
-require "dotremap/vkopenurldef"
+require "karabiner/vkopenurldef"
 
 module Karabiner::InvokeHistory
   def self.clear_histroy

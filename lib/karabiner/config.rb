@@ -1,5 +1,5 @@
 require "forwardable"
-require "dotremap/namespace"
+require "karabiner/namespace"
 
 class Karabiner::Config
   extend Forwardable

@@ -1,6 +1,6 @@
 require "forwardable"
-require "dotremap/namespace"
-require "dotremap/dsl/group"
+require "karabiner/namespace"
+require "karabiner/dsl/group"
 
 class Karabiner::Group
   extend Forwardable

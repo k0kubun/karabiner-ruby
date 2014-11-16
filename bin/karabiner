@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+lib = File.dirname(__FILE__) + "/../lib"
+$:.unshift lib unless $:.include? lib
+
+require "karabiner"
+
+DOTFILE_PATH = File.expand_path("~/.karabiner")
+
+karabiner = Karabiner.new(DOTFILE_PATH)
+karabiner.apply_configuration

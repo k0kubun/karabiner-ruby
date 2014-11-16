@@ -1,5 +1,5 @@
-require "dotremap/key"
-require "dotremap/property"
+require "karabiner/key"
+require "karabiner/property"
 
 class Karabiner::Remap < Karabiner::Property
   def initialize(from, to)

@@ -1,4 +1,4 @@
-require "dotremap/xml_tree"
+require "karabiner/xml_tree"
 
 class Karabiner::Appdef
   include Karabiner::XmlTree

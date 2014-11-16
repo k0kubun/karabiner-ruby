@@ -1,2 +1,2 @@
-require "dotremap"
+require "karabiner"
 require "pry"

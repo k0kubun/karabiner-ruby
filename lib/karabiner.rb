@@ -1,6 +1,6 @@
-require "dotremap/cli"
-require "dotremap/version"
-require "dotremap/root"
+require "karabiner/cli"
+require "karabiner/version"
+require "karabiner/root"
 require "unindent"
 require "fileutils"
 

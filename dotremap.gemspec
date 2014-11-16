@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dotremap/version'
+require 'karabiner/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "dotremap"
+  spec.name          = "karabiner"
   spec.version       = Karabiner::VERSION
   spec.authors       = ["Takashi Kokubun"]
   spec.email         = ["takashikkbn@gmail.com"]
   spec.summary       = %q{Lightweight keyremap configuration DSL}
   spec.description   = %q{Lightweight keyremap configuration DSL for Karabiner}
-  spec.homepage      = "https://github.com/k0kubun/dotremap"
+  spec.homepage      = "https://github.com/k0kubun/karabiner"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

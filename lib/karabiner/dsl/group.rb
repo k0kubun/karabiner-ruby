@@ -1,5 +1,5 @@
-require "dotremap/namespace"
-require "dotremap/item"
+require "karabiner/namespace"
+require "karabiner/item"
 
 module Karabiner::DSL::Group
   def item(name = nil, options = {}, &block)

@@ -1,9 +1,9 @@
-require "dotremap/namespace"
-require "dotremap/appdef"
-require "dotremap/config"
-require "dotremap/item"
-require "dotremap/group"
-require "dotremap/dsl/group"
+require "karabiner/namespace"
+require "karabiner/appdef"
+require "karabiner/config"
+require "karabiner/item"
+require "karabiner/group"
+require "karabiner/dsl/group"
 
 module Karabiner::DSL::Root
   include Karabiner::DSL::Group

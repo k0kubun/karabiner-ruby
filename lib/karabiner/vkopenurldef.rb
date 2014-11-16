@@ -1,4 +1,4 @@
-require "dotremap/xml_tree"
+require "karabiner/xml_tree"
 
 class Karabiner::Vkopenurldef
   include Karabiner::XmlTree

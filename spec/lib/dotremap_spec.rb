@@ -19,19 +19,19 @@ describe Karabiner do
     config.close!
   end
 
-  def prepare_dotremap(dotremap)
-    config.write(dotremap)
+  def prepare_karabiner(karabiner)
+    config.write(karabiner)
     config.rewind
   end
 
   def expect_result(expected_result)
-    dotremap = Karabiner.new(config.path)
-    dotremap.apply_configuration
+    karabiner = Karabiner.new(config.path)
+    karabiner.apply_configuration
     expect(result).to eq(expected_result)
   end
 
   it "accepts blank config" do
-    prepare_dotremap("")
+    prepare_karabiner("")
 
     expect_result(<<-EOS.unindent)
       <?xml version="1.0"?>
@@ -42,7 +42,7 @@ describe Karabiner do
   end
 
   it "accepts cmd combination" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "Command+A to Command+B" do
         remap "Cmd-A", to: "Cmd-B"
       end
@@ -61,7 +61,7 @@ describe Karabiner do
   end
 
   it "accepts multiple remaps" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "multiple remaps" do
         remap "Cmd-A", to: "Cmd-B"
         remap "Shift-A", to: "Shift-B"
@@ -82,7 +82,7 @@ describe Karabiner do
   end
 
   it "accepts multiple items" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "first item" do
         remap "Cmd-C-A", to: "Cmd-M-B"
       end
@@ -111,7 +111,7 @@ describe Karabiner do
   end
 
   it "accepts appdef and app option" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       appdef "CHROME", equal: "com.google.Chrome"
 
       item "Command+K to Command+L", only: "CHROME" do
@@ -138,7 +138,7 @@ describe Karabiner do
   end
 
   it "accepts config and show_message" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "CapsLock ON", config_not: "notsave.private_capslock_on" do
         remap "Cmd-L", to: ["capslock", "VK_CONFIG_FORCE_ON_notsave_private_capslock_on"]
       end
@@ -180,7 +180,7 @@ describe Karabiner do
   end
 
   it "accepts implicit autogen selection" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "Control+LeftClick to Command+LeftClick" do
         autogen "__PointingButtonToPointingButton__ PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL, PointingButton::LEFT, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_COMMAND"
       end
@@ -199,7 +199,7 @@ describe Karabiner do
   end
 
   it "application invoking" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       item "Application shortcuts" do
         remap "C-o", to: invoke("YoruFukurou")
         remap "C-u", to: invoke("Google Chrome")
@@ -247,7 +247,7 @@ describe Karabiner do
   end
 
   it "accepts group items" do
-    prepare_dotremap(<<-EOS)
+    prepare_karabiner(<<-EOS)
       group "Option" do
         item "First" do
           identifier "option.option_first"
@@ -279,7 +279,7 @@ describe Karabiner do
 
   context "when items are surrounded by config" do
     it "accepts cmd combination" do
-      prepare_dotremap(<<-EOS)
+      prepare_karabiner(<<-EOS)
         config "Default" do
           item "Command+A to Command+B" do
             remap "Cmd-A", to: "Cmd-B"
@@ -300,7 +300,7 @@ describe Karabiner do
     end
 
     it "accepts group items" do
-      prepare_dotremap(<<-EOS)
+      prepare_karabiner(<<-EOS)
         config "Original" do
           group "Option" do
             item "First" do

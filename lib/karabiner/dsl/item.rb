@@ -1,7 +1,7 @@
-require "dotremap/namespace"
-require "dotremap/property"
-require "dotremap/remap"
-require "dotremap/invoke_history"
+require "karabiner/namespace"
+require "karabiner/property"
+require "karabiner/remap"
+require "karabiner/invoke_history"
 
 module Karabiner::DSL::Item
   AVAILABLE_PROPERTIES = %i(

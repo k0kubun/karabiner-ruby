@@ -1,6 +1,6 @@
-require "dotremap/invoke_history"
-require "dotremap/vkopenurldef"
-require "dotremap/dsl/root"
+require "karabiner/invoke_history"
+require "karabiner/vkopenurldef"
+require "karabiner/dsl/root"
 
 class Karabiner::Root
   include Karabiner::XmlTree
