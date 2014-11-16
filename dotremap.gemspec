@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Dotremap::VERSION
   spec.authors       = ["Takashi Kokubun"]
   spec.email         = ["takashikkbn@gmail.com"]
-  spec.summary       = %q{Lightweight keyremap configuration DSL}
-  spec.description   = %q{Lightweight keyremap configuration DSL for Karabiner}
-  spec.homepage      = "https://github.com/k0kubun/dotremap"
+  spec.summary       = %q{This gem is moved to karabiner gem. https://github.com/k0kubun/karabiner-dsl}
+  spec.description   = %q{This gem is moved to karabiner gem. https://github.com/k0kubun/karabiner-dsl}
+  spec.homepage      = "https://github.com/k0kubun/karabiner-dsl"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
