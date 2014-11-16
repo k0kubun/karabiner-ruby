@@ -1,8 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-if [ $@ == "dsl" ]; then
-  bin_dir=$(cd $(dirname $0); pwd)
-  ${bin_dir}/karabiner-dsl
+lib = File.dirname(__FILE__) + "/../lib"
+$:.unshift lib unless $:.include? lib
+
+require "karabiner"
+
+DOTFILE_PATH = File.expand_path("~/.karabiner")
+
+if ARGV.first == "dsl"
+  karabiner = Karabiner.new(DOTFILE_PATH)
+  karabiner.apply_configuration
 else
-  /Applications/Karabiner.app/Contents/Library/bin/karabiner $@
-fi
+  system("/Applications/Karabiner.app/Contents/Library/bin/karabiner #{ARGV.join(' ')}")
+end
