@@ -79,6 +79,7 @@ describe Karabiner::Key do
       "/"       => "KeyCode::SLASH",
       "="       => "KeyCode::EQUAL",
       "'"       => "KeyCode::QUOTE",
+      "`"       => "KeyCode::BACKQUOTE",
       "Ctrl_R"  => "KeyCode::CONTROL_R",
       "Ctrl_L"  => "KeyCode::CONTROL_L",
       "Opt_R"   => "KeyCode::OPTION_R",
