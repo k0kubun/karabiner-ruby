@@ -24,6 +24,7 @@ class Karabiner::Key
     "/"      => "SLASH",
     "="      => "EQUAL",
     "'"      => "QUOTE",
+    "`"      => "BACKQUOTE",
     "Ctrl_R" => "CONTROL_R",
     "Ctrl_L" => "CONTROL_L",
     "Opt_R"  => "OPTION_R",
