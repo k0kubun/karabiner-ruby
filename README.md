@@ -103,7 +103,7 @@ You have to write "key expression" to specify keys to remap.
 a b c ... x y z
 0 1 2 ... 7 8 9
 F1 F2 ... F11 F12
-\ [ ] ; ' , . / - =
+\ [ ] ; ' ` , . / - =
 Up Down Right Left
 space tab delete forward_delete capslock
 
