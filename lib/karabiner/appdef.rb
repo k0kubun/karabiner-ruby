@@ -3,11 +3,11 @@ require "karabiner/xml_tree"
 class Karabiner::Appdef
   include Karabiner::XmlTree
 
-  AVAILABLE_OPTIONS = %i(
+  AVAILABLE_OPTIONS = %i[
     equal
     prefix
     suffix
-  ).freeze
+  ].freeze
 
   def initialize(appname, options)
     property = Karabiner::Property.new("appname", appname)

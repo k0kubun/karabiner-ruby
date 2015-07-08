@@ -5,12 +5,12 @@ class Karabiner::Item
   include Karabiner::XmlTree
   include Karabiner::DSL::Item
 
-  AVAILABLE_OPTIONS = %i(
+  AVAILABLE_OPTIONS = %i[
     not
     only
     config_not
     config_only
-  ).freeze
+  ].freeze
 
   def initialize(name, options = {})
     @skip_identifier = options.delete(:skip_identifier)

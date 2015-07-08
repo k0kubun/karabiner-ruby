@@ -4,11 +4,11 @@ require "karabiner/history"
 require "karabiner/remap"
 
 module Karabiner::DSL::Item
-  AVAILABLE_PROPERTIES = %i(
+  AVAILABLE_PROPERTIES = %i[
     name
     identifier
     autogen
-  ).freeze
+  ].freeze
 
   def remap(target, options = {})
     remap = Karabiner::Remap.new(target, options[:to])
