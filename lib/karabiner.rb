@@ -10,7 +10,7 @@ class Karabiner
 
   def initialize(config_path)
     @config_path = config_path
-    Karabiner::InvokeHistory.clear_histroy
+    Karabiner::History.clear_histroy
   end
   attr_reader :config_path
 

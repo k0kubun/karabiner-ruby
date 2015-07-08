@@ -1,12 +1,12 @@
 require "set"
 require "karabiner/vkopenurldef"
 
-module Karabiner::InvokeHistory
+module Karabiner::History
   def self.clear_histroy
     @@registered_applications = Set.new
   end
 
-  def self.register(application)
+  def self.register_application(application)
     registered_applications.add(application)
   end
 

@@ -1,6 +1,6 @@
-require "karabiner/invoke_history"
-require "karabiner/vkopenurldef"
 require "karabiner/dsl/root"
+require "karabiner/history"
+require "karabiner/vkopenurldef"
 
 class Karabiner::Root
   include Karabiner::XmlTree
@@ -11,7 +11,7 @@ class Karabiner::Root
   end
 
   def to_xml
-    Karabiner::InvokeHistory.registered_applications.each do |application|
+    Karabiner::History.registered_applications.each do |application|
       vkopenurldef = Karabiner::Vkopenurldef.new(application)
       add_child(vkopenurldef)
     end
