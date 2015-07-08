@@ -12,7 +12,7 @@ class Karabiner::Root
 
   def to_xml
     Karabiner::History.registered_applications.each do |application|
-      vkopenurldef = Karabiner::Vkopenurldef.new(application)
+      vkopenurldef = Karabiner::Vkopenurldef.for_application(application)
       add_child(vkopenurldef)
     end
 

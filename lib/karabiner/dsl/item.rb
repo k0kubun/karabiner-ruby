@@ -1,7 +1,8 @@
+require "karabiner/history"
 require "karabiner/namespace"
 require "karabiner/property"
-require "karabiner/history"
 require "karabiner/remap"
+require "karabiner/vkopenurldef"
 
 module Karabiner::DSL::Item
   AVAILABLE_PROPERTIES = %i[
@@ -22,7 +23,7 @@ module Karabiner::DSL::Item
 
   def invoke(application)
     Karabiner::History.register_application(application)
-    "VK_OPEN_URL_APP_#{application.gsub(/ /, '_')}"
+    Karabiner::Vkopenurldef.application_keycode(application)
   end
 
   private
