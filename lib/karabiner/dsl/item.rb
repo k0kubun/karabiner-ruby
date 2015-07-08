@@ -26,6 +26,11 @@ module Karabiner::DSL::Item
     Karabiner::Vkopenurldef.application_keycode(application)
   end
 
+  def execute(script)
+    Karabiner::History.register_script(script)
+    Karabiner::Vkopenurldef.script_keycode(script)
+  end
+
   private
 
   def method_missing(property, value = '', options = {})

@@ -122,6 +122,10 @@ item "Application shortcuts" do
   remap "C-h", to: invoke("iTerm")
 end
 
+item "Copy date" do
+  remap "Cmd-d", to: execute("date|pbcopy")
+end
+
 item "Control+PNBF to Up/Down/Left/Right" do
   remap "C-p", to: "Up"
   remap "C-n", to: "Down"
