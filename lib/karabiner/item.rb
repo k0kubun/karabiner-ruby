@@ -10,6 +10,8 @@ class Karabiner::Item
     only
     config_not
     config_only
+    device_not
+    device_only
   ].freeze
 
   def initialize(name, options = {})
