@@ -203,7 +203,7 @@ describe Karabiner do
       item "Application shortcuts" do
         remap "C-o", to: invoke("YoruFukurou")
         remap "C-u", to: invoke("Google Chrome")
-        remap "C-h", to: invoke("iTerm")
+        remap "C-h", to: invoke("/Users/johndoe/Applications/iTerm.app")
       end
 
       item "duplicate app" do
@@ -240,7 +240,7 @@ describe Karabiner do
 
         <vkopenurldef>
           <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
-          <url type="file">/Applications/iTerm.app</url>
+          <url type="file">/Users/johndoe/Applications/iTerm.app</url>
         </vkopenurldef>
       </root>
     EOS

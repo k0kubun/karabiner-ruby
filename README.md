@@ -117,9 +117,9 @@ Shift_R Shift_L
 
 ```rb
 item "Application shortcuts" do
-  remap "C-o", to: invoke("YoruFukurou")
-  remap "C-u", to: invoke("Google Chrome")
-  remap "C-h", to: invoke("iTerm")
+  remap "C-o", to: invoke("YoruFukurou") # Invoke the app under the /Applications.
+  remap "C-u", to: invoke("Google Chrome") # ditto.
+  remap "C-h", to: invoke("/Users/johndoe/Applications/iTerm.app") # Invoke the app of the specified path.
 end
 
 item "Copy date" do
