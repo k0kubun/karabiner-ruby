@@ -82,6 +82,8 @@ describe Karabiner::Key do
       "`"       => "KeyCode::BACKQUOTE",
       "Ctrl_R"  => "KeyCode::CONTROL_R",
       "Ctrl_L"  => "KeyCode::CONTROL_L",
+      "Alt_R"   => "KeyCode::OPTION_R",
+      "Alt_L"   => "KeyCode::OPTION_L",
       "Opt_R"   => "KeyCode::OPTION_R",
       "Opt_L"   => "KeyCode::OPTION_L",
       "Cmd_R"   => "KeyCode::COMMAND_R",

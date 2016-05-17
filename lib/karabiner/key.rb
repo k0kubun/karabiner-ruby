@@ -27,6 +27,8 @@ class Karabiner::Key
     "`"      => "BACKQUOTE",
     "Ctrl_R" => "CONTROL_R",
     "Ctrl_L" => "CONTROL_L",
+    "Alt_R"  => "OPTION_R",
+    "Alt_L"  => "OPTION_L",
     "Opt_R"  => "OPTION_R",
     "Opt_L"  => "OPTION_L",
     "Cmd_R"  => "COMMAND_R",
