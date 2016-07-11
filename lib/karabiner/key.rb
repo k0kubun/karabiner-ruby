@@ -33,6 +33,7 @@ class Karabiner::Key
     "Opt_L"  => "OPTION_L",
     "Cmd_R"  => "COMMAND_R",
     "Cmd_L"  => "COMMAND_L",
+    "Esc"    => "ESCAPE",
   }.freeze
   PREFIX_MAP = {
     "C"     => "VK_CONTROL",

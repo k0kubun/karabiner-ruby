@@ -90,6 +90,7 @@ describe Karabiner::Key do
       "Cmd_L"   => "KeyCode::COMMAND_L",
       "Shift_R" => "KeyCode::SHIFT_R",
       "Shift_L" => "KeyCode::SHIFT_L",
+      "Esc"     => "KeyCode::ESCAPE",
     }.freeze
 
     it "converts single key expression as expected" do
