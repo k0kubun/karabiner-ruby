@@ -68,6 +68,8 @@ describe Karabiner::Key do
       "Opt_L"   => "KeyCode::OPTION_L",
       "Cmd_R"   => "KeyCode::COMMAND_R",
       "Cmd_L"   => "KeyCode::COMMAND_L",
+      "Shift_R" => "KeyCode::SHIFT_R",
+      "Shift_L" => "KeyCode::SHIFT_L",
       "Esc"     => "KeyCode::ESCAPE",
 
       "Brightness Down"     => "ConsumerKeyCode::BRIGHTNESS_DOWN",
