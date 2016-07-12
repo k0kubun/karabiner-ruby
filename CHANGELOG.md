@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.4.0](https://github.com/k0kubun/karabiner-dsl/tree/v0.4.0) (2016-07-12)
+[Full Changelog](https://github.com/k0kubun/karabiner-dsl/compare/v0.3.1...v0.4.0)
+
+**Closed issues:**
+
+- Add support for consumer key [\#6](https://github.com/k0kubun/karabiner-dsl/issues/6)
+
+**Merged pull requests:**
+
+- Improve keycode support [\#7](https://github.com/k0kubun/karabiner-dsl/pull/7) ([ardecvz](https://github.com/ardecvz))
+
 ## [v0.3.1](https://github.com/k0kubun/karabiner-dsl/tree/v0.3.1) (2016-05-17)
 [Full Changelog](https://github.com/k0kubun/karabiner-dsl/compare/v0.3.0...v0.3.1)
 
