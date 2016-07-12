@@ -1,5 +1,20 @@
 class Karabiner::Key
-  KEYCODE_MAP = {
+  def self.normalize_input(raw_input)
+    if raw_input.match(/^VK_/)
+      raw_input
+    else
+      raw_input = raw_input.tr(' ', '_').tr('+', '-').upcase
+    end
+  end
+
+  def self.normalize_and_freeze_map(map)
+    map.tap do |h|
+      h.keys.each { |k| h[normalize_input(k)] = h.delete(k) }
+    end
+    map.freeze
+  end
+
+  KEYCODE_MAP = normalize_and_freeze_map({
     "0"      => "KEY_0",
     "1"      => "KEY_1",
     "2"      => "KEY_2",
@@ -34,16 +49,16 @@ class Karabiner::Key
     "Cmd_R"  => "COMMAND_R",
     "Cmd_L"  => "COMMAND_L",
     "Esc"    => "ESCAPE",
-  }.freeze
-  PREFIX_MAP = {
-    "C"     => "VK_CONTROL",
-    "Ctrl"  => "VK_CONTROL",
-    "Cmd"   => "VK_COMMAND",
-    "Shift" => "VK_SHIFT",
-    "M"     => "VK_OPTION",
-    "Opt"   => "VK_OPTION",
-    "Alt"   => "VK_OPTION",
-  }.freeze
+  })
+  PREFIX_MAP = normalize_and_freeze_map({
+    "C"        => "VK_CONTROL",
+    "Ctrl"     => "VK_CONTROL",
+    "Cmd"      => "VK_COMMAND",
+    "Shift"    => "VK_SHIFT",
+    "M"        => "VK_OPTION",
+    "Opt"      => "VK_OPTION",
+    "Alt"      => "VK_OPTION",
+  })
   PREFIX_EXPRESSION = "(#{PREFIX_MAP.keys.map { |k| k + '-' }.join('|')})"
 
   def initialize(expression)
@@ -57,6 +72,7 @@ class Karabiner::Key
   private
 
   def key_combination(raw_combination)
+    raw_combination = normalize_key_combination(raw_combination)
     raw_prefixes, raw_key = split_key_combination(raw_combination)
     return key_expression(raw_key) if raw_prefixes.empty?
 
@@ -66,12 +82,15 @@ class Karabiner::Key
 
   def key_expression(raw_key)
     case raw_key
-    when /^(#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})$/
+    when /^#{Regexp.union(KEYCODE_MAP.keys)}$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
     else
-      raw_key = raw_key.upcase unless raw_key.match(/^VK_/)
       "KeyCode::#{raw_key}"
     end
+  end
+
+  def normalize_key_combination(raw_combination)
+    self.class.normalize_input(raw_combination)
   end
 
   def split_key_combination(raw_combination)

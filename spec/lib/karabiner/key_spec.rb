@@ -1,34 +1,12 @@
 require "spec_helper"
 
 describe Karabiner::Key do
+  describe ".normalize_input" do
+    it { expect(described_class.normalize_input('Cmd+Volume Up')).to eq('CMD-VOLUME_UP') }
+  end
+
   describe "#to_s" do
     EXPECTED_RESULTS = {
-      "a"       => "KeyCode::A",
-      "b"       => "KeyCode::B",
-      "c"       => "KeyCode::C",
-      "d"       => "KeyCode::D",
-      "e"       => "KeyCode::E",
-      "f"       => "KeyCode::F",
-      "g"       => "KeyCode::G",
-      "h"       => "KeyCode::H",
-      "i"       => "KeyCode::I",
-      "j"       => "KeyCode::J",
-      "k"       => "KeyCode::K",
-      "l"       => "KeyCode::L",
-      "m"       => "KeyCode::M",
-      "n"       => "KeyCode::N",
-      "o"       => "KeyCode::O",
-      "p"       => "KeyCode::P",
-      "q"       => "KeyCode::Q",
-      "r"       => "KeyCode::R",
-      "s"       => "KeyCode::S",
-      "t"       => "KeyCode::T",
-      "u"       => "KeyCode::U",
-      "v"       => "KeyCode::V",
-      "w"       => "KeyCode::W",
-      "x"       => "KeyCode::X",
-      "y"       => "KeyCode::Y",
-      "z"       => "KeyCode::Z",
       "A"       => "KeyCode::A",
       "B"       => "KeyCode::B",
       "C"       => "KeyCode::C",
@@ -88,8 +66,6 @@ describe Karabiner::Key do
       "Opt_L"   => "KeyCode::OPTION_L",
       "Cmd_R"   => "KeyCode::COMMAND_R",
       "Cmd_L"   => "KeyCode::COMMAND_L",
-      "Shift_R" => "KeyCode::SHIFT_R",
-      "Shift_L" => "KeyCode::SHIFT_L",
       "Esc"     => "KeyCode::ESCAPE",
     }.freeze
 
@@ -111,6 +87,12 @@ describe Karabiner::Key do
       unique_maps = Karabiner::Key::PREFIX_MAP.to_a.sort_by { rand }.uniq { |a| a[1] }
       unique_maps.combination(2) do |(prefix1, vk1), (prefix2, vk2)|
         expect(described_class.new("#{prefix1}-#{prefix2}-#{key}").to_s).to eq("#{keycode}, #{vk1} | #{vk2}")
+      end
+    end
+
+    it "converts key expression in case-insensitive manner" do
+      EXPECTED_RESULTS.each do |expression, result|
+        expect(described_class.new(expression.swapcase).to_s).to eq(result)
       end
     end
   end
