@@ -1,5 +1,24 @@
 class Karabiner::Key
-  KEYCODE_MAP = {
+  def self.normalize_input(raw_input)
+    if raw_input.match(/^VK_/)
+      raw_input
+    else
+      raw_input = raw_input.tr(' ', '_').tr('+', '-').upcase
+    end
+  end
+
+  def self.normalize_and_freeze_map(map)
+    map.tap do |h|
+      h.keys.each { |k| h[normalize_input(k)] = h.delete(k) }
+    end
+    map.freeze
+  end
+
+  # Karabiner full keycode reference:
+  # https://pqrs.org/osx/karabiner/xml.html#keycode-list
+  KEYCODE_MAP = normalize_and_freeze_map({
+    "nil"    => "VK_NONE",
+    "none"   => "VK_NONE",
     "0"      => "KEY_0",
     "1"      => "KEY_1",
     "2"      => "KEY_2",
@@ -33,15 +52,42 @@ class Karabiner::Key
     "Opt_L"  => "OPTION_L",
     "Cmd_R"  => "COMMAND_R",
     "Cmd_L"  => "COMMAND_L",
-  }.freeze
-  PREFIX_MAP = {
-    "C"     => "VK_CONTROL",
-    "Ctrl"  => "VK_CONTROL",
-    "Cmd"   => "VK_COMMAND",
-    "Shift" => "VK_SHIFT",
-    "M"     => "VK_OPTION",
-    "Opt"   => "VK_OPTION",
-  }.freeze
+    "Esc"    => "ESCAPE",
+  })
+  CONSUMER_MAP = normalize_and_freeze_map({
+    "Brightness Down"     => "BRIGHTNESS_DOWN",
+    "Brightness Up"       => "BRIGHTNESS_UP",
+    "Keyboardlight Off"   => "KEYBOARDLIGHT_OFF",
+    "Keyboardlight Low"   => "KEYBOARDLIGHT_LOW",
+    "Keyboardlight High"  => "KEYBOARDLIGHT_HIGH",
+    "Keyboard Light Off"  => "KEYBOARDLIGHT_OFF",
+    "Keyboard Light Low"  => "KEYBOARDLIGHT_LOW",
+    "Keyboard Light High" => "KEYBOARDLIGHT_HIGH",
+    "Music Prev"          => "MUSIC_PREV",
+    "Music Play"          => "MUSIC_PLAY",
+    "Music Next"          => "MUSIC_NEXT",
+    "Prev"                => "MUSIC_PREV",
+    "Play"                => "MUSIC_PLAY",
+    "Next"                => "MUSIC_NEXT",
+    "Volume Mute"         => "VOLUME_MUTE",
+    "Volume Down"         => "VOLUME_DOWN",
+    "Volume Up"           => "VOLUME_UP",
+    "Mute"                => "VOLUME_MUTE",
+    "Eject"               => "EJECT",
+    "Power"               => "POWER",
+    "Numlock"             => "NUMLOCK",
+    "Num Lock"            => "NUMLOCK",
+    "Video Mirror"        => "VIDEO_MIRROR",
+  })
+  PREFIX_MAP = normalize_and_freeze_map({
+    "C"        => "VK_CONTROL",
+    "Ctrl"     => "VK_CONTROL",
+    "Cmd"      => "VK_COMMAND",
+    "Shift"    => "VK_SHIFT",
+    "M"        => "VK_OPTION",
+    "Opt"      => "VK_OPTION",
+    "Alt"      => "VK_OPTION",
+  })
   PREFIX_EXPRESSION = "(#{PREFIX_MAP.keys.map { |k| k + '-' }.join('|')})"
 
   def initialize(expression)
@@ -55,6 +101,8 @@ class Karabiner::Key
   private
 
   def key_combination(raw_combination)
+    return "KeyCode::VK_NONE" if raw_combination.nil?
+    raw_combination = normalize_key_combination(raw_combination)
     raw_prefixes, raw_key = split_key_combination(raw_combination)
     return key_expression(raw_key) if raw_prefixes.empty?
 
@@ -64,12 +112,17 @@ class Karabiner::Key
 
   def key_expression(raw_key)
     case raw_key
-    when /^(#{KEYCODE_MAP.keys.map { |k| Regexp.escape(k) }.join('|')})$/
+    when /^#{Regexp.union(KEYCODE_MAP.keys)}$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
+    when /^#{Regexp.union(CONSUMER_MAP.keys)}$/
+      "ConsumerKeyCode::#{CONSUMER_MAP[raw_key]}"
     else
-      raw_key = raw_key.upcase unless raw_key.match(/^VK_/)
       "KeyCode::#{raw_key}"
     end
+  end
+
+  def normalize_key_combination(raw_combination)
+    self.class.normalize_input(raw_combination)
   end
 
   def split_key_combination(raw_combination)
