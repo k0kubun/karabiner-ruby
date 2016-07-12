@@ -50,6 +50,31 @@ class Karabiner::Key
     "Cmd_L"  => "COMMAND_L",
     "Esc"    => "ESCAPE",
   })
+  CONSUMER_MAP = normalize_and_freeze_map({
+    "Brightness Down"     => "BRIGHTNESS_DOWN",
+    "Brightness Up"       => "BRIGHTNESS_UP",
+    "Keyboardlight Off"   => "KEYBOARDLIGHT_OFF",
+    "Keyboardlight Low"   => "KEYBOARDLIGHT_LOW",
+    "Keyboardlight High"  => "KEYBOARDLIGHT_HIGH",
+    "Keyboard Light Off"  => "KEYBOARDLIGHT_OFF",
+    "Keyboard Light Low"  => "KEYBOARDLIGHT_LOW",
+    "Keyboard Light High" => "KEYBOARDLIGHT_HIGH",
+    "Music Prev"          => "MUSIC_PREV",
+    "Music Play"          => "MUSIC_PLAY",
+    "Music Next"          => "MUSIC_NEXT",
+    "Prev"                => "MUSIC_PREV",
+    "Play"                => "MUSIC_PLAY",
+    "Next"                => "MUSIC_NEXT",
+    "Volume Mute"         => "VOLUME_MUTE",
+    "Volume Down"         => "VOLUME_DOWN",
+    "Volume Up"           => "VOLUME_UP",
+    "Mute"                => "VOLUME_MUTE",
+    "Eject"               => "EJECT",
+    "Power"               => "POWER",
+    "Numlock"             => "NUMLOCK",
+    "Num Lock"            => "NUMLOCK",
+    "Video Mirror"        => "VIDEO_MIRROR",
+  })
   PREFIX_MAP = normalize_and_freeze_map({
     "C"        => "VK_CONTROL",
     "Ctrl"     => "VK_CONTROL",
@@ -84,6 +109,8 @@ class Karabiner::Key
     case raw_key
     when /^#{Regexp.union(KEYCODE_MAP.keys)}$/
       "KeyCode::#{KEYCODE_MAP[raw_key]}"
+    when /^#{Regexp.union(CONSUMER_MAP.keys)}$/
+      "ConsumerKeyCode::#{CONSUMER_MAP[raw_key]}"
     else
       "KeyCode::#{raw_key}"
     end
