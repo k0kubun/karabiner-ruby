@@ -7,6 +7,8 @@ describe Karabiner::Key do
 
   describe "#to_s" do
     EXPECTED_RESULTS = {
+      "nil"     => "KeyCode::VK_NONE",
+      "none"    => "KeyCode::VK_NONE",
       "A"       => "KeyCode::A",
       "B"       => "KeyCode::B",
       "C"       => "KeyCode::C",
@@ -118,6 +120,10 @@ describe Karabiner::Key do
       EXPECTED_RESULTS.each do |expression, result|
         expect(described_class.new(expression.swapcase).to_s).to eq(result)
       end
+    end
+
+    it "accepts nil class as key expression" do
+      expect(described_class.new(nil).to_s).to eq("KeyCode::VK_NONE")
     end
   end
 end

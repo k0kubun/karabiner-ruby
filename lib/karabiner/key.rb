@@ -15,6 +15,8 @@ class Karabiner::Key
   end
 
   KEYCODE_MAP = normalize_and_freeze_map({
+    "nil"    => "VK_NONE",
+    "none"   => "VK_NONE",
     "0"      => "KEY_0",
     "1"      => "KEY_1",
     "2"      => "KEY_2",
@@ -97,6 +99,7 @@ class Karabiner::Key
   private
 
   def key_combination(raw_combination)
+    return "KeyCode::VK_NONE" if raw_combination.nil?
     raw_combination = normalize_key_combination(raw_combination)
     raw_prefixes, raw_key = split_key_combination(raw_combination)
     return key_expression(raw_key) if raw_prefixes.empty?
