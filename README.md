@@ -81,34 +81,44 @@ You have to write "key expression" to specify keys to remap.
 #### key expression
 
 - `a`, `A`, `1`, `;`, `tab`, `Tab`, `space`, `up`, `down`
-  - any string without `-` will be regarded as single key
-  - ignore upcase or downcase
-- `C-a`, `Ctrl-a`
-  - regarded as Control + A
-  - `C-` is a short expression of `Ctrl-`
-- `M-a`, `Opt-a`
-  - regarded as Option + A
-- `Shift-a`
-  - regarded as large A
-  - if you write just `A`, it will be regarded as small a
-- `Cmd-a`
-  - regarded as Command + A
-- `Cmd-Shift-a`
-  - regarded as Command + Shift + A
-  - you can use any combination of Ctrl, Opt, Shift, Cmd
+  - any string without `-` or `+` will be regarded as a single key
+  - strings are case insensitive
+- `Volume Mute`, `Mute`, `Brightness Down`, `Brightness_Down`
+  - support system (consumer) keys
+  - words could be separated by space ` ` or underscore `_`
+- nil, `nil`, `none`
+  - you can drop any key by using nil or the corresponding aliases
+
+#### key combination
+
+| Key combination                                            | Regarded as           | Notes  |
+| ---------------------------------------------------------- | --------------------- | ------ |
+| `C-a`, `Ctrl-a`, `C+a`, `Ctrl+a`                           | Control + A           | `C-` is a short alias for `Ctrl-` |
+| `M-a`, `Opt-a`, `Alt-a`, `M+a`, `Opt+a`, `Alt+a`           | Option + A            | `M-` and `Alt-` are aliases for `Opt-` |
+| `Shift-a`, `Shift+a`                                       | Shift + A (capital A) | if you write just `A`, it will be regarded as small a |
+| `Cmd-a`, `Cmd+a`                                           | Command + A           |        |
+| `Cmd-Shift-a`, `Cmd+Shift-a`, `Cmd-Shift+a`, `Cmd+Shift+a` | Command + Shift + A   | you can use any combination of Ctrl, Opt, Shift, Cmd |
 
 #### available single keys
+
+[Karabiner DSL keycode and alias reference](https://github.com/k0kubun/karabiner-dsl/blob/master/lib/karabiner/key.rb)
+
+[Karabiner full keycode reference](https://pqrs.org/osx/karabiner/xml.html#keycode-list)
 
 ```
 a b c ... x y z
 0 1 2 ... 7 8 9
+
 F1 F2 ... F11 F12
 \ [ ] ; ' ` , . / - =
 Up Down Right Left
-space tab delete forward_delete capslock
+Space Tab Delete ... Forward_Delete Esc Capslock
+Mute Volume_Down Volume_Up ... Prev Play Next
+
+nil none
 
 Ctrl_R  Ctrl_L
-Opt_R   Opt_L
+Opt_R   Opt_L   Alt_R   Alt_L
 Cmd_R   Cmd_L
 Shift_R Shift_L
 ```
