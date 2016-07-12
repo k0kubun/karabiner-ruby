@@ -14,6 +14,8 @@ class Karabiner::Key
     map.freeze
   end
 
+  # Karabiner full keycode reference:
+  # https://pqrs.org/osx/karabiner/xml.html#keycode-list
   KEYCODE_MAP = normalize_and_freeze_map({
     "nil"    => "VK_NONE",
     "none"   => "VK_NONE",
