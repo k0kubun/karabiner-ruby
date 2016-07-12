@@ -42,6 +42,7 @@ class Karabiner::Key
     "Shift" => "VK_SHIFT",
     "M"     => "VK_OPTION",
     "Opt"   => "VK_OPTION",
+    "Alt"   => "VK_OPTION",
   }.freeze
   PREFIX_EXPRESSION = "(#{PREFIX_MAP.keys.map { |k| k + '-' }.join('|')})"
 
