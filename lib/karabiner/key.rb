@@ -7,7 +7,7 @@ class Karabiner::Key
     end
   end
 
-  def self.normalize_and_freeze_map(map)
+  def self.normalize_and_freeze!(map)
     map.tap do |h|
       h.keys.each { |k| h[normalize_input(k)] = h.delete(k) }
     end
@@ -16,7 +16,7 @@ class Karabiner::Key
 
   # Karabiner full keycode reference:
   # https://pqrs.org/osx/karabiner/xml.html#keycode-list
-  KEYCODE_MAP = normalize_and_freeze_map({
+  KEYCODE_MAP = normalize_and_freeze!({
     "nil"    => "VK_NONE",
     "none"   => "VK_NONE",
     "0"      => "KEY_0",
@@ -54,7 +54,7 @@ class Karabiner::Key
     "Cmd_L"  => "COMMAND_L",
     "Esc"    => "ESCAPE",
   })
-  CONSUMER_MAP = normalize_and_freeze_map({
+  CONSUMER_MAP = normalize_and_freeze!({
     "Brightness Down"     => "BRIGHTNESS_DOWN",
     "Brightness Up"       => "BRIGHTNESS_UP",
     "Keyboardlight Off"   => "KEYBOARDLIGHT_OFF",
@@ -79,7 +79,7 @@ class Karabiner::Key
     "Num Lock"            => "NUMLOCK",
     "Video Mirror"        => "VIDEO_MIRROR",
   })
-  PREFIX_MAP = normalize_and_freeze_map({
+  PREFIX_MAP = normalize_and_freeze!({
     "C"        => "VK_CONTROL",
     "Ctrl"     => "VK_CONTROL",
     "Cmd"      => "VK_COMMAND",
