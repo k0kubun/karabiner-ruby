@@ -49,7 +49,7 @@ class Karabiner::Item
     return if properties.map(&:attr).include?("identifier")
 
     name = properties.find { |p| p.attr == "name" }
-    generated_identifier = name.value.gsub(/[^a-zA-Z]/, "_").downcase
+    generated_identifier = name.value.gsub(/[^a-zA-Z0-9]/, "_").downcase
     identifier = Karabiner::Property.new("identifier", "remap.#{generated_identifier}")
     childs[1, 0] = identifier
   end
