@@ -11,5 +11,27 @@ describe Karabiner::Item do
         </item>
       EOS
     end
+
+    it "generates unique identifiers for items with the same name" do
+      root = described_class.new("Root", skip_identifier: true)
+      3.times { root.add_child(described_class.new("The same name")) }
+      expect(root.to_xml).to eq(<<-EOS.unindent.strip)
+        <item>
+          <name>Root</name>
+          <item>
+            <name>The same name</name>
+            <identifier>remap.the_same_name</identifier>
+          </item>
+          <item>
+            <name>The same name</name>
+            <identifier>remap.the_same_name_2</identifier>
+          </item>
+          <item>
+            <name>The same name</name>
+            <identifier>remap.the_same_name_3</identifier>
+          </item>
+        </item>
+      EOS
+    end
   end
 end

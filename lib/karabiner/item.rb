@@ -50,7 +50,17 @@ class Karabiner::Item
 
     name = properties.find { |p| p.attr == "name" }
     generated_identifier = name.value.gsub(/[^a-zA-Z0-9]/, "_").downcase
-    identifier = Karabiner::Property.new("identifier", "remap.#{generated_identifier}")
+    generated_identifier = "remap.#{generated_identifier}"
+
+    identifiers = root.descendants.map do |node|
+      node.value if node.is_a?(Karabiner::Property) && node.attr == "identifier"
+    end
+    while identifiers.include?(generated_identifier)
+      # Sort trick limits the min value
+      generated_identifier.sub!(/_?(\d*)$/) { "_#{[1, $1.to_i].sort![1].succ}" }
+    end
+
+    identifier = Karabiner::Property.new("identifier", generated_identifier)
     children[1, 0] = identifier
   end
 end

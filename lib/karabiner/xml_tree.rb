@@ -15,6 +15,32 @@ module Karabiner::XmlTree
     children.select { |c| c.is_a?(klass) }
   end
 
+  def ancestors
+    node, nodes = self, []
+
+    nodes << node = node.parent while node.parent
+
+    nodes
+  end
+
+  def descendants
+    stack, nodes = [self], []
+
+    until stack.empty?
+      node = stack.shift
+      # depth-first search
+      stack = node.children + stack
+
+      nodes << node unless node == self
+    end
+
+    nodes
+  end
+
+  def root
+    ancestors.last || self
+  end
+
   def to_xml(distance_between_children = 0)
     tag_name = self.class.to_s.split("::").last.downcase
     newline_count = distance_between_children + 1
@@ -29,8 +55,6 @@ module Karabiner::XmlTree
   protected
 
   attr_writer :parent
-
-  private
 
   def children
     @children ||= []
