@@ -40,17 +40,17 @@ class Karabiner::Item
   private
 
   def validate_name_existence
-    properties = search_childs(Karabiner::Property)
+    properties = search_children(Karabiner::Property)
     raise "Name property does not exist" unless properties.map(&:attr).include?("name")
   end
 
   def generate_identifier
-    properties = search_childs(Karabiner::Property)
+    properties = search_children(Karabiner::Property)
     return if properties.map(&:attr).include?("identifier")
 
     name = properties.find { |p| p.attr == "name" }
     generated_identifier = name.value.gsub(/[^a-zA-Z0-9]/, "_").downcase
     identifier = Karabiner::Property.new("identifier", "remap.#{generated_identifier}")
-    childs[1, 0] = identifier
+    children[1, 0] = identifier
   end
 end
