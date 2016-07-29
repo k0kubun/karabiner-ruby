@@ -1,10 +1,10 @@
-# Karabiner DSL [![Build Status](https://travis-ci.org/k0kubun/karabiner-dsl.png?branch=master)](https://travis-ci.org/k0kubun/karabiner-dsl)
+# Karabiner DSL [![Build Status](https://travis-ci.org/k0kubun/karabiner-dsl.svg?branch=master)](https://travis-ci.org/k0kubun/karabiner-dsl)
 
 Lightweight keyremap configuration DSL for [Karabiner](https://pqrs.org/osx/karabiner/index.html.en)
 
 ## Why Karabiner DSL?
 
-Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.ja) is very hard to write.  
+Original [Karabiner's configuration](https://pqrs.org/osx/karabiner/xml.html.en) is very hard to write.  
 Karabiner DSL is its wrapper, which is easy-to-write and readable.  
   
 If you write Karabiner's config with Karabiner DSL, you can update your keyremap configuration quickly.
@@ -103,7 +103,7 @@ You have to write "key expression" to specify keys to remap.
 
 [Karabiner DSL keycode and alias reference](https://github.com/k0kubun/karabiner-dsl/blob/master/lib/karabiner/key.rb)
 
-[Karabiner full keycode reference](https://pqrs.org/osx/karabiner/xml.html#keycode-list)
+[Karabiner full keycode reference](https://pqrs.org/osx/karabiner/xml.html.en#keycode-list)
 
 ```
 a b c ... x y z
