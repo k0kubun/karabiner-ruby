@@ -154,6 +154,10 @@ item "Window change in the same app" do
 end
 ```
 
+## Linux alternative
+You could achieve the same functionality on Linux/X11 with a sister project [xkremap](https://github.com/k0kubun/xkremap).
+It has a similar syntax and doesn't need any Ruby interpreter to run.
+
 ## Contributing
 
 1. Fork it ( https://github.com/k0kubun/karabiner-dsl/fork )
