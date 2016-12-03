@@ -53,6 +53,11 @@ class Karabiner::Key
     "Cmd_R"  => "COMMAND_R",
     "Cmd_L"  => "COMMAND_L",
     "Esc"    => "ESCAPE",
+    "Jis_Atmark" => "JIS_ATMARK",
+    "Jis_Colon"  => "JIS_COLON",
+    "Jis_Eisuu"  => "JIS_EISUU",
+    "Jis_Kana"   => "JIS_KANA",
+    "Jis_Yen"    => "JIS_YEN",
   })
   CONSUMER_MAP = normalize_and_freeze!({
     "Brightness Down"     => "BRIGHTNESS_DOWN",
