@@ -105,6 +105,9 @@ You have to write "key expression" to specify keys to remap.
 
 [Karabiner full keycode reference](https://pqrs.org/osx/karabiner/xml.html.en#keycode-list)
 
+*Note:* Karabiner DSL is designed to work with all keycodes which are supported by Karabiner
+(listed in the full keycode reference).
+
 ```
 a b c ... x y z
 0 1 2 ... 7 8 9
